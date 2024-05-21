@@ -17,7 +17,7 @@ public class Gym {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Manager man = new Manager(1,"Manager");
+        Manager man = new Manager(1);
         
     }
     
@@ -25,8 +25,13 @@ public class Gym {
 
     public void addMember(Member member) {
         members.add(member);
+        Serialize("Memeber.ser");
     }
 
+    public static void Serialize(String Path){
+        
+    }
+    
     public boolean authenticate(String username, String password) {
         for (Member member : members) {
             if (member.getUsername().equals(username) && member.getPassword().equals(password)) {
