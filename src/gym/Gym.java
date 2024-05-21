@@ -4,7 +4,9 @@
  */
 package gym;
 
+import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,18 +20,46 @@ public class Gym {
     public static void main(String[] args) {
         // TODO code application logic here
         Manager man = new Manager(1);
-        
+        startUp();
+    
     }
     
-    private ArrayList<Member> members = new ArrayList<>();
+    public static void startUp(){
+        members = Deserialize("Mmber.ser");
+    }
+    
+    private static ArrayList<Member> members = new ArrayList<>();
 
+    public static ArrayList<Member> Deserialize(String path){
+        
+        ArrayList<Member> object = null;
+    try {
+            FileInputStream fis = new FileInputStream(path);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            members = (ArrayList<Member>) ois.readObject();
+            ois.close();
+            fis.close();
+            System.out.println(members);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return object;
+    }
+    
     public void addMember(Member member) {
         members.add(member);
         Serialize("Memeber.ser");
     }
 
-    public static void Serialize(String Path){
-        
+    public void Serialize(String path){
+    try {
+           FileOutputStream fos = new FileOutputStream(path);
+           ObjectOutputStream oos = new ObjectOutputStream(fos);
+           oos.writeObject(members);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     public boolean authenticate(String username, String password) {

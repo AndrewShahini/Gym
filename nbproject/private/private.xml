@@ -3,12 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/shahi/OneDrive/Documents/NetBeansProjects/Gym/src/gym/Employee.java</file>
             <file>file:/C:/Users/shahi/OneDrive/Documents/NetBeansProjects/Gym/src/gym/Gym.java</file>
             <file>file:/C:/Users/shahi/OneDrive/Documents/NetBeansProjects/Gym/src/gym/frmSignUp.java</file>
-            <file>file:/C:/Users/shahi/OneDrive/Documents/NetBeansProjects/Gym/src/gym/Manager.java</file>
+            <file>file:/C:/Users/shahi/OneDrive/Documents/NetBeansProjects/Gym/src/gym/frmPremMainMenu.java</file>
             <file>file:/C:/Users/shahi/OneDrive/Documents/NetBeansProjects/Gym/src/gym/frmLogin.java</file>
             <file>file:/C:/Users/shahi/OneDrive/Documents/NetBeansProjects/Gym/src/gym/frmMainMenu.java</file>
-            <file>file:/C:/Users/shahi/OneDrive/Documents/NetBeansProjects/Gym/src/gym/Trainer.java</file>
+            <file>file:/C:/Users/shahi/OneDrive/Documents/NetBeansProjects/Gym/src/gym/frmRegMainMenu.java</file>
+            <file>file:/C:/Users/shahi/OneDrive/Documents/NetBeansProjects/Gym/src/gym/frmPayment.java</file>
+            <file>file:/C:/Users/shahi/OneDrive/Documents/NetBeansProjects/Gym/src/gym/frmMemberMenu.java</file>
+            <file>file:/C:/Users/shahi/OneDrive/Documents/NetBeansProjects/Gym/src/gym/Employees.java</file>
         </group>
     </open-files>
 </project-private>

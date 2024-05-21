@@ -28,33 +28,34 @@ public class frmMainMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnAddMem = new javax.swing.JButton();
-        btnFindMem = new javax.swing.JButton();
-        btnAddTrain = new javax.swing.JButton();
+        btnMember = new javax.swing.JButton();
+        btnEmployees = new javax.swing.JButton();
+        btnPayments = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
-        btnFindTrain = new javax.swing.JButton();
+        btnBooking = new javax.swing.JButton();
         btnSignOut = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnAddMem.setText("Add Member");
-        btnAddMem.addActionListener(new java.awt.event.ActionListener() {
+        btnMember.setText("Member");
+        btnMember.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddMemActionPerformed(evt);
+                btnMemberActionPerformed(evt);
             }
         });
 
-        btnFindMem.setText("Find Member");
-        btnFindMem.addActionListener(new java.awt.event.ActionListener() {
+        btnEmployees.setText("Employees");
+        btnEmployees.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFindMemActionPerformed(evt);
+                btnEmployeesActionPerformed(evt);
             }
         });
 
-        btnAddTrain.setText("Add Trainer");
-        btnAddTrain.addActionListener(new java.awt.event.ActionListener() {
+        btnPayments.setText("Payments");
+        btnPayments.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddTrainActionPerformed(evt);
+                btnPaymentsActionPerformed(evt);
             }
         });
 
@@ -65,7 +66,12 @@ public class frmMainMenu extends javax.swing.JFrame {
             }
         });
 
-        btnFindTrain.setText("Find Trainer");
+        btnBooking.setText("Booking");
+        btnBooking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBookingActionPerformed(evt);
+            }
+        });
 
         btnSignOut.setText("Sign Out");
         btnSignOut.addActionListener(new java.awt.event.ActionListener() {
@@ -73,6 +79,9 @@ public class frmMainMenu extends javax.swing.JFrame {
                 btnSignOutActionPerformed(evt);
             }
         });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        jLabel1.setText("MAIN MENU");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,15 +93,17 @@ public class frmMainMenu extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(btnExit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(39, 39, 39)
                         .addComponent(btnSignOut))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(151, 151, 151)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnAddMem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnFindMem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAddTrain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnFindTrain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 142, Short.MAX_VALUE)))
+                            .addComponent(btnMember, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnPayments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBooking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 156, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -101,33 +112,35 @@ public class frmMainMenu extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExit)
-                    .addComponent(btnSignOut))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAddMem)
-                .addGap(27, 27, 27)
-                .addComponent(btnFindMem)
-                .addGap(36, 36, 36)
-                .addComponent(btnAddTrain)
-                .addGap(35, 35, 35)
-                .addComponent(btnFindTrain)
-                .addContainerGap(72, Short.MAX_VALUE))
+                    .addComponent(btnSignOut)
+                    .addComponent(jLabel1))
+                .addGap(15, 15, 15)
+                .addComponent(btnMember)
+                .addGap(26, 26, 26)
+                .addComponent(btnEmployees)
+                .addGap(28, 28, 28)
+                .addComponent(btnPayments)
+                .addGap(28, 28, 28)
+                .addComponent(btnBooking)
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddMemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMemActionPerformed
+    private void btnMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMemberActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnAddMemActionPerformed
+        dispose();
+        new frmMemberMenu().setVisible(true);
+    }//GEN-LAST:event_btnMemberActionPerformed
 
-    private void btnFindMemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindMemActionPerformed
+    private void btnEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnFindMemActionPerformed
+    }//GEN-LAST:event_btnEmployeesActionPerformed
 
-    private void btnAddTrainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTrainActionPerformed
+    private void btnPaymentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddTrainActionPerformed
+    }//GEN-LAST:event_btnPaymentsActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
@@ -146,6 +159,10 @@ public class frmMainMenu extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnSignOutActionPerformed
+
+    private void btnBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBookingActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,11 +201,12 @@ public class frmMainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddMem;
-    private javax.swing.JButton btnAddTrain;
+    private javax.swing.JButton btnBooking;
+    private javax.swing.JButton btnEmployees;
     private javax.swing.JButton btnExit;
-    private javax.swing.JButton btnFindMem;
-    private javax.swing.JButton btnFindTrain;
+    private javax.swing.JButton btnMember;
+    private javax.swing.JButton btnPayments;
     private javax.swing.JButton btnSignOut;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
