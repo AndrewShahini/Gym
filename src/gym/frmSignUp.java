@@ -101,6 +101,11 @@ public class frmSignUp extends javax.swing.JFrame {
         lblPhoneNumber.setText("Phone Number");
 
         btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         btnPay.setText("Pay");
         btnPay.addActionListener(new java.awt.event.ActionListener() {
@@ -247,6 +252,12 @@ public class frmSignUp extends javax.swing.JFrame {
             new frmRegMainMenu().setVisible(true);
        }      
     }//GEN-LAST:event_btnPayActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        dispose();
+        new frmMemberMenu().setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBackActionPerformed
    
     /**
      * @param args the command line arguments

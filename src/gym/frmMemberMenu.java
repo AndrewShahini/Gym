@@ -116,7 +116,8 @@ public class frmMemberMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFindActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        new frmMainMenu().setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     /**

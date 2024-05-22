@@ -114,9 +114,9 @@ public class frmMainMenu extends javax.swing.JFrame {
                     .addComponent(btnExit)
                     .addComponent(btnSignOut)
                     .addComponent(jLabel1))
-                .addGap(15, 15, 15)
+                .addGap(18, 18, 18)
                 .addComponent(btnMember)
-                .addGap(26, 26, 26)
+                .addGap(23, 23, 23)
                 .addComponent(btnEmployees)
                 .addGap(28, 28, 28)
                 .addComponent(btnPayments)
@@ -135,7 +135,9 @@ public class frmMainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMemberActionPerformed
 
     private void btnEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeesActionPerformed
-        // TODO add your handling code here:
+
+        dispose();
+        new frmEmployeeMenu().setVisible(true);
     }//GEN-LAST:event_btnEmployeesActionPerformed
 
     private void btnPaymentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentsActionPerformed
