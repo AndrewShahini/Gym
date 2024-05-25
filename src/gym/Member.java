@@ -14,21 +14,21 @@ import java.util.Objects;
 public class Member extends Person implements Serializable{
     
     private static int count = 0;
-    private int memberId;
+    public String memberId;
     private String dateOfBirth;
+    public String membership;
 
     public Member() {
         super();
+        this.memberId = "";
+        this.membership = "";
     }
 
     public Member(int memberId, String dateOfBirth, String name, int age, String gender, String address, String email, String phoneNumber) {
         super(name, age, gender, address, email, phoneNumber);
-        this.memberId = count++;
+        this.memberId = String.valueOf(count++);
         this.dateOfBirth = dateOfBirth;
     }
-
-
-      
 
     public static int getCount() {
         return count;
@@ -38,11 +38,11 @@ public class Member extends Person implements Serializable{
         Member.count = count;
     }
 
-    public int getMemberId() {
+    public String getMemberId() {
         return memberId;
     }
 
-    public void setMemberId(int memberId) {
+    public void setMemberId(String memberId) {
         this.memberId = memberId;
     }
 
@@ -78,12 +78,43 @@ public class Member extends Person implements Serializable{
         this.address = address;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + this.memberId;
-        return hash;
+    public String getDateOfBirth() {
+        return dateOfBirth;
     }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getMembership() {
+        return membership;
+    }
+
+    public void setMembership(String membership) {
+        this.membership = membership;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void upgradeToPremium() {
+        this.membership = "Premium";
+    }
+    
+
 
     @Override
     public boolean equals(Object obj) {
@@ -102,6 +133,7 @@ public class Member extends Person implements Serializable{
         }
         return false;
     }
+
 
       
 }

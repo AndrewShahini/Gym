@@ -28,7 +28,7 @@ public class frmEmployeeMenu extends javax.swing.JFrame {
 
         lblEmployeeMenu = new javax.swing.JLabel();
         btnFind = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
+        btnFire = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         btnHire = new javax.swing.JButton();
 
@@ -44,10 +44,10 @@ public class frmEmployeeMenu extends javax.swing.JFrame {
             }
         });
 
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+        btnFire.setText("Fire");
+        btnFire.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+                btnFireActionPerformed(evt);
             }
         });
 
@@ -80,7 +80,7 @@ public class frmEmployeeMenu extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(159, 159, 159)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnDelete)
+                            .addComponent(btnFire)
                             .addComponent(btnFind)
                             .addComponent(btnHire))))
                 .addContainerGap(97, Short.MAX_VALUE))
@@ -95,7 +95,7 @@ public class frmEmployeeMenu extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(btnFind)
                 .addGap(26, 26, 26)
-                .addComponent(btnDelete)
+                .addComponent(btnFire)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addContainerGap())
@@ -114,10 +114,10 @@ public class frmEmployeeMenu extends javax.swing.JFrame {
         new frmMainMenu().setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void btnFireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFireActionPerformed
         dispose();
         new frmFireEmployee().setVisible(true);
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }//GEN-LAST:event_btnFireActionPerformed
 
     private void btnHireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHireActionPerformed
        dispose();
@@ -161,8 +161,8 @@ public class frmEmployeeMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFind;
+    private javax.swing.JButton btnFire;
     private javax.swing.JButton btnHire;
     private javax.swing.JLabel lblEmployeeMenu;
     // End of variables declaration//GEN-END:variables

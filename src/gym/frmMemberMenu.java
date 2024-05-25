@@ -137,7 +137,8 @@ public class frmMemberMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUpgradeActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        new frmDeleteMember().setVisible(true);
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**

@@ -45,6 +45,7 @@ public class Gym {
             ois.close();
             fis.close();
             System.out.println(members);
+            return members;
         } catch (Exception e) {
             e.printStackTrace();
         }

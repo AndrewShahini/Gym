@@ -163,7 +163,8 @@ public class frmMainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSignOutActionPerformed
 
     private void btnBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookingActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        new frmBooking().setVisible(true);
     }//GEN-LAST:event_btnBookingActionPerformed
 
     /**
