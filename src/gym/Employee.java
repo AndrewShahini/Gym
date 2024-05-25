@@ -29,11 +29,13 @@ public class Employee extends Person{
         this.role = role;
     }
 
-    public Employee(int employeeId, String role, String name, int age, String gender, String address) {
-        super(name, age, gender, address);
-        this.employeeId = employeeId;
+    public Employee(int employeeId, String role, String name, int age, String gender, String address, String email, String phoneNumber) {
+        super(name, age, gender, address, email, phoneNumber);
+        this.employeeId = count++;
         this.role = role;
     }
+
+
 
     public static int getCount() {
         return count;

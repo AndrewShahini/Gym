@@ -27,28 +27,43 @@ public class frmEmployeeMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         lblEmployeeMenu = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnFind = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        btnHire = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblEmployeeMenu.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         lblEmployeeMenu.setText("EMPLOYEES MENU");
 
-        jButton1.setText("Find");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnFind.setText("Find");
+        btnFind.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnFindActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Delete");
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Back");
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Hire");
+        btnHire.setText("Hire");
+        btnHire.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHireActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,13 +76,13 @@ public class frmEmployeeMenu extends javax.swing.JFrame {
                         .addComponent(lblEmployeeMenu))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton3))
+                        .addComponent(btnBack))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(159, 159, 159)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1)
-                            .addComponent(jButton4))))
+                            .addComponent(btnDelete)
+                            .addComponent(btnFind)
+                            .addComponent(btnHire))))
                 .addContainerGap(97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -76,22 +91,38 @@ public class frmEmployeeMenu extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(lblEmployeeMenu)
                 .addGap(44, 44, 44)
-                .addComponent(jButton4)
+                .addComponent(btnHire)
                 .addGap(24, 24, 24)
-                .addComponent(jButton1)
+                .addComponent(btnFind)
                 .addGap(26, 26, 26)
-                .addComponent(jButton2)
+                .addComponent(btnDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(btnBack)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
+        dispose();
+        new frmFindEmployee().setVisible(true);
+    }//GEN-LAST:event_btnFindActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        dispose();
+        new frmMainMenu().setVisible(true);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        dispose();
+        new frmFireEmployee().setVisible(true);
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnHireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHireActionPerformed
+       dispose();
+       new frmHireEmployee().setVisible(true);
+    }//GEN-LAST:event_btnHireActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,10 +160,10 @@ public class frmEmployeeMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnFind;
+    private javax.swing.JButton btnHire;
     private javax.swing.JLabel lblEmployeeMenu;
     // End of variables declaration//GEN-END:variables
 }

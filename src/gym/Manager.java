@@ -23,15 +23,19 @@ public class Manager extends Employee {
     public Manager(int employeeId) {
         super(employeeId);
         this.username = "Andrew";
-        this.password = "123456";
+        this.password = "123456";   
     }
 
-    public Manager(int employeeId, String role, String name, int age, String gender, String address) {
-        super(employeeId, role, name, age, gender, address);
-        this.username = "Andrew";
-        this.password = "123456";
+    public Manager(int employeeId, String role, String name, int age, String gender, String address, String email, String phoneNumber) {
+        super(employeeId, role, name, age, gender, address, email, phoneNumber);
     }
-
+    
+       public Manager(int employeeId, String role, String name, int age, String gender, String address, String email, String phoneNumber,String username,String password) {
+        super(employeeId, role, name, age, gender, address, email, phoneNumber);
+        this.username = username;
+        this.password = password;
+    }
+    
     public static int getCount() {
         return count;
     }
@@ -88,15 +92,37 @@ public class Manager extends Employee {
         this.address = address;
     }
 
-    	public boolean validateLogin(String userName, String password){
-            boolean loginSuccessful = false;
-            if(userName.equals("Andrew")){
-                if(password.equals("123456")){
-                    loginSuccessful= true;
-                }
-            }
-            return loginSuccessful;
-	}
+    public static String getUsername() {
+        return username;
+    }
+
+    public static void setUsername(String username) {
+        Manager.username = username;
+    }
+
+    public static String getPassword() {
+        return password;
+    }
+
+    public static void setPassword(String password) {
+        Manager.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     
 }

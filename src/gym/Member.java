@@ -4,30 +4,31 @@
  */
 package gym;
 
+import java.io.*;
 import java.util.Objects;
 
 /**
  *
  * @author shahi
  */
-public class Member extends Person {
+public class Member extends Person implements Serializable{
     
     private static int count = 0;
     private int memberId;
-    private String username;
-    private String password;
     private String dateOfBirth;
 
     public Member() {
         super();
     }
 
-    public Member(int memberId, String username, String password, String name, int age, String gender, String address) {
-        super(name, age, gender, address);
+    public Member(int memberId, String dateOfBirth, String name, int age, String gender, String address, String email, String phoneNumber) {
+        super(name, age, gender, address, email, phoneNumber);
         this.memberId = count++;
-        this.username = username;
-        this.password = password;
+        this.dateOfBirth = dateOfBirth;
     }
+
+
+      
 
     public static int getCount() {
         return count;
@@ -43,22 +44,6 @@ public class Member extends Person {
 
     public void setMemberId(int memberId) {
         this.memberId = memberId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getName() {
@@ -97,8 +82,6 @@ public class Member extends Person {
     public int hashCode() {
         int hash = 7;
         hash = 59 * hash + this.memberId;
-        hash = 59 * hash + Objects.hashCode(this.username);
-        hash = 59 * hash + Objects.hashCode(this.password);
         return hash;
     }
 
@@ -117,16 +100,8 @@ public class Member extends Person {
         if (this.memberId != other.memberId) {
             return false;
         }
-        if (!Objects.equals(this.username, other.username)) {
-            return false;
-        }
-        return Objects.equals(this.password, other.password);
+        return false;
     }
 
-    
-    
-
-    
-    
-    
+      
 }

@@ -23,12 +23,16 @@ public abstract class Person implements Serializable {
     public Person() {
     }
 
-    public Person(String name, int age, String gender, String address) {
+    public Person(String name, int age, String gender, String address, String email, String phoneNumber) {
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.address = address;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
     }
+
+
 
     public String getName() {
         return name;

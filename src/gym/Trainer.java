@@ -14,19 +14,16 @@ public class Trainer extends Employee{
     
     private String specialist;
 
-    
-    
+    public Trainer() {
+        this.role = "Trainer";
+    }
+
     public Trainer(String specialist) {
         this.specialist = specialist;
     }
 
     public Trainer(String specialist, int employeeId, String role) {
         super(employeeId, role);
-        this.specialist = specialist;
-    }
-
-    public Trainer(String specialist, int employeeId, String role, String name, int age, String gender, String address) {
-        super(employeeId, role, name, age, gender, address);
         this.specialist = specialist;
     }
 

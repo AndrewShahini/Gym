@@ -208,8 +208,8 @@ public class frmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSignUpActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-      // if(txtUsername.getText().equals("Andrew")&& txtPassword.getText().equals("123456")) 
-    if(txtUsername.getText().equals(Manager.username)&& txtPassword.getText().equals(Manager.password))
+    //if(txtUsername.getText().equals("Andrew")&& txtPassword.getText().equals("123456")) 
+   if(txtUsername.getText().equals(Manager.username)&& txtPassword.getText().equals(Manager.password))
         {
             setVisible(false);
             new frmMainMenu().setVisible(true);

@@ -24,16 +24,16 @@ public class Gym {
                 new frmLogin().setVisible(true);
             }
         });
-        Manager man = new Manager(1);
+       Manager m = new Manager(1);
         //startUp();
     
     }
     
     public static void startUp(){
-        members = Deserialize("Mmber.ser");
+        members = Deserialize("Member.ser");
     }
     
-    private static ArrayList<Member> members = new ArrayList<>();
+    public static ArrayList<Member> members = new ArrayList<>();
 
     public static ArrayList<Member> Deserialize(String path){
         
@@ -67,24 +67,7 @@ public class Gym {
         }
     }
     
-    public boolean authenticate(String username, String password) {
-        for (Member member : members) {
-            if (member.getUsername().equals(username) && member.getPassword().equals(password)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
-    public Member findMemberUsernme(String username) {
-        for (Member member : members) {
-            if (member.getUsername().equals(username)) {
-                return member;
-            }
-        }
-        return null;
-    }
-    
 }
     
     
