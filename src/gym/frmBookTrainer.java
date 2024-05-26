@@ -15,7 +15,7 @@ public class frmBookTrainer extends javax.swing.JFrame {
     private DefaultListModel<String> memberListModel;
     private DefaultListModel<String> trainerListModel;
     private Member selectedMember;
-    private Employee selectedTrainer;
+    private Trainer selectedTrainer;
     
     private frmViewBooking viewBookingFrame;
     
@@ -26,7 +26,10 @@ public class frmBookTrainer extends javax.swing.JFrame {
         listOfPremMem.setModel(memberListModel);
         listOfTrainers.setModel(trainerListModel);
         
-       viewBookingFrame = new frmViewBooking();
+        viewBookingFrame = new frmViewBooking();
+        
+        populateMemberList();
+        populateTrainerList();
     }
 
     /**
@@ -85,6 +88,11 @@ public class frmBookTrainer extends javax.swing.JFrame {
             }
         });
 
+        listOfPremMem.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listOfPremMemValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(listOfPremMem);
 
         btnBook.setText("Book");
@@ -124,6 +132,11 @@ public class frmBookTrainer extends javax.swing.JFrame {
             }
         });
 
+        listOfTrainers.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listOfTrainersValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(listOfTrainers);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -219,7 +232,7 @@ public class frmBookTrainer extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         dispose();
-        new frmBookingMenu().setVisible(true);
+        new frmMainMenu().setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
@@ -231,16 +244,14 @@ public class frmBookTrainer extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIDActionPerformed
 
     private void btnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookActionPerformed
-    /*    
-     TrainerSelectionDialog trainerSelectionDialog = new TrainerSelectionDialog(this);
-        trainerSelectionDialog.setVisible(true);
-
-        Trainer selectedTrainer = trainerSelectionDialog.getSelectedTrainer();
-        if (selectedTrainer != null) {
-            JOptionPane.showMessageDialog(this, "Successfully booked " + selectedTrainer);
-            bookingListModel.addElement("Booked " + selectedTrainer + " for " + listOfPremMem.getSelectedValue());
-        }  
-      */
+  
+        /*String memberName = listOfPremMem.getSelectedValue().toString();
+        String trainerName = listOfTrainers.getSelectedValue().toString();
+        
+        // Call addBooking method of frmViewBooking to add the booking
+        frmViewBooking.addBooking(memberName, trainerName);
+        
+        // Optionally, display the frmViewBooking frame
     
     if (selectedMember == null || selectedTrainer == null) {
             JOptionPane.showMessageDialog(this, "Please select a premium member and a trainer.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -251,8 +262,19 @@ public class frmBookTrainer extends javax.swing.JFrame {
         viewBookingFrame.addBooking(selectedMember.getName(), selectedTrainer.getName());
         // Example: Display a message
         JOptionPane.showMessageDialog(this, "Trainer booked for member.", "Success", JOptionPane.INFORMATION_MESSAGE);
-       
-    
+      */ 
+     if (selectedMember == null || selectedTrainer == null) {
+        JOptionPane.showMessageDialog(this, "Please select a premium member and a trainer.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Add the booking to the frmViewBooking instance
+    viewBookingFrame.addBooking(selectedMember.getName(), selectedTrainer.getName());
+
+    // Show confirmation message
+    JOptionPane.showMessageDialog(this, "Trainer booked for member.", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+    viewBookingFrame.setVisible(true);
     }//GEN-LAST:event_btnBookActionPerformed
 
     private void btnFindMemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindMemActionPerformed
@@ -307,11 +329,7 @@ public class frmBookTrainer extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No trainers available.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     
-        
-        
-        
-        
-        
+          
         
     }//GEN-LAST:event_btnFindEmpActionPerformed
 
@@ -323,27 +341,60 @@ public class frmBookTrainer extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmpIDActionPerformed
 
-    
-    private void listOfPremMemValueChanged(javax.swing.event.ListSelectionEvent evt) {                                            
+    private void listOfPremMemValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listOfPremMemValueChanged
         if (!evt.getValueIsAdjusting()) {
             int selectedIndex = listOfPremMem.getSelectedIndex();
             if (selectedIndex != -1) {
                 // Retrieve the selected premium member
-                selectedMember = members.get(selectedIndex);
+                String selectedMemberString = listOfPremMem.getSelectedValue();
+            for (Member member : members) {
+                if (member.toString().equals(selectedMemberString)) {
+                    selectedMember = member;
+                    break;
+                }
             }
         }
-    }                                           
+      }
+        
+    }//GEN-LAST:event_listOfPremMemValueChanged
 
-    private void listOfTrainersValueChanged(javax.swing.event.ListSelectionEvent evt) {                                            
-        if (!evt.getValueIsAdjusting()) {
-            int selectedIndex = listOfTrainers.getSelectedIndex();
-            if (selectedIndex != -1) {
-                // Retrieve the selected trainer
-                selectedTrainer = employees.get(selectedIndex);
+    private void listOfTrainersValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listOfTrainersValueChanged
+            if (!evt.getValueIsAdjusting()) {
+        int selectedIndex = listOfTrainers.getSelectedIndex();
+        if (selectedIndex != -1) {
+            String selectedTrainerString = listOfTrainers.getSelectedValue();
+            for (Employee employee : employees) {
+                if (employee.getRole().equalsIgnoreCase("trainer") &&
+                    selectedTrainerString.equals(employee.toString())) {
+                    selectedTrainer = (Trainer) employee;
+                    break;
+                }
+            }
+            if (selectedTrainer == null) {
+                JOptionPane.showMessageDialog(this, "Please select a trainer.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
-    
+
+    }//GEN-LAST:event_listOfTrainersValueChanged
+                
+    private void populateMemberList() {
+        memberListModel.clear();
+        for (Member member : members) {
+            if (member.membership.equalsIgnoreCase("Premium")) {
+                memberListModel.addElement(member.toString());
+            }
+        }
+    }
+
+    private void populateTrainerList() {
+        trainerListModel.clear();
+        for (Employee employee : employees) {
+            if (employee.getRole().equalsIgnoreCase("trainer")) {
+                trainerListModel.addElement(employee.toString());
+            }
+        }
+    }
     
     /**
      * @param args the command line arguments

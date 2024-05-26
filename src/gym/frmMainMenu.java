@@ -141,7 +141,8 @@ public class frmMainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEmployeesActionPerformed
 
     private void btnPaymentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentsActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        new frmPayment().setVisible(true);
     }//GEN-LAST:event_btnPaymentsActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -164,7 +165,7 @@ public class frmMainMenu extends javax.swing.JFrame {
 
     private void btnBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookingActionPerformed
         dispose();
-        new frmBookingMenu().setVisible(true);
+        new frmBookTrainer().setVisible(true);
     }//GEN-LAST:event_btnBookingActionPerformed
 
     /**

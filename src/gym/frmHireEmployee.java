@@ -227,9 +227,19 @@ public class frmHireEmployee extends javax.swing.JFrame {
        String address = txtEmpAddress.getText();
        int age = Integer.parseInt(txtEmpAge.getText());
         
+       
+       if (!phoneNumber.matches("\\d{3}-\\d{3}-\\d{4}")) {
+          JOptionPane.showMessageDialog(null, "Invalid phone number format. Use xxx-xxx-xxxx.");
+          return;
+        }
+       
+      if(role.equalsIgnoreCase("trainer")){
+          Trainer newTrainer = new Trainer(role, name, age, gender, address, email, phoneNumber);
+          employees.add(newTrainer);
+      }else{
       Employee newEmployee = new Employee(role, name, age, gender, address, email, phoneNumber);
       employees.add(newEmployee);
-         
+      } 
       Employee.saveEmployeeList(); //serializes
 
      // Clear the fields after hiring

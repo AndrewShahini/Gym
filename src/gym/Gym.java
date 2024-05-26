@@ -24,56 +24,32 @@ public class Gym {
                 new frmLogin().setVisible(true);
             }
         });
-       Manager m = new Manager("1","Manager","Andrew", 18, "Male", "123 park", "Andrew@gmail.com","514-612-3244");
+       Manager m = new Manager("1","Andrew", 18, "Male", "123 park", "Andrew@gmail.com","514-612-3244");
+       Trainer t = new Trainer("Trainer", "John Cena", 40, "Male", "822 Avenue", "CenaJohn@gmail.com", "133-343-4355");
        employees.add(m);
-
-
-//startUp();
+       employees.add(t);
+       Employee.saveEmployeeList();
+       Employee.loadEmployeeList();
+       
+       Member mem = new Member("James Shahini", 20, "Male", "931 Ball", "ShaJames@gmail.com", "514-131-3134","Premium");
+       Member mem2 = new Member("William Black", 27, "Male", "672 Avenue", "WilliamBlack@gmail.com", "514-977-8297","Regular");
+       members.add(mem);
+       members.add(mem2);
+       Member.Serialize("Member.ser");
+       startUp();
  
     }
     
     public static void startUp(){
-        members = Deserialize("Member.ser");
+        members = Member.loadMembers();
     }
     
     public static ArrayList<Member> members = new ArrayList<>();
-    public static ArrayList<Trainer> trainers = new ArrayList<>();
+  // public static ArrayList<Trainer> trainers = new ArrayList<>();
     public static ArrayList<Employee> employees = new ArrayList<>();
 
-    public static ArrayList<Member> Deserialize(String path){
-        
-        ArrayList<Member> object = null;
-    try {
-            FileInputStream fis = new FileInputStream(path);
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            members = (ArrayList<Member>) ois.readObject();
-            ois.close();
-            fis.close();
-            System.out.println(members);
-            return members;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        return object;
-    }
     
-    public void addMember(Member member) {
-        members.add(member);
-        Serialize("Memeber.ser");
-    }
-
-    public void Serialize(String path){
-    try {
-           FileOutputStream fos = new FileOutputStream(path);
-           ObjectOutputStream oos = new ObjectOutputStream(fos);
-           oos.writeObject(members);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-    
+      
  
 
 }

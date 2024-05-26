@@ -18,8 +18,22 @@ public class frmSignUp extends javax.swing.JFrame {
     public frmSignUp() {
         initComponents();
         members = loadMembers();
+        toggle();
     }
 
+    public void toggle(){
+       // Toggle visibility of price labels based on membership type
+        if (boxMem.getSelectedItem().equals("Regular")) {
+            lblRegularPrice.setVisible(true);
+            lblPremiumPrice.setVisible(false);
+        } 
+        
+        if(boxMem.getSelectedItem().equals("Premium")){
+            lblRegularPrice.setVisible(false);
+            lblPremiumPrice.setVisible(true);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,6 +66,12 @@ public class frmSignUp extends javax.swing.JFrame {
         lblMemSign = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         boxMem = new javax.swing.JComboBox<>();
+        lblPaymentMethod = new javax.swing.JLabel();
+        boxPaymentMethod = new javax.swing.JComboBox<>();
+        lblAmountPaid = new javax.swing.JLabel();
+        txtAmountPaid = new javax.swing.JTextField();
+        lblRegularPrice = new javax.swing.JLabel();
+        lblPremiumPrice = new javax.swing.JLabel();
 
         boxOther.setText("Other");
         boxOther.addActionListener(new java.awt.event.ActionListener() {
@@ -136,6 +156,21 @@ public class frmSignUp extends javax.swing.JFrame {
             }
         });
 
+        lblPaymentMethod.setText("Payment Method");
+
+        boxPaymentMethod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cash", "Credit" }));
+        boxPaymentMethod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxPaymentMethodActionPerformed(evt);
+            }
+        });
+
+        lblAmountPaid.setText("Amount paid:");
+
+        lblRegularPrice.setText("Regular: $180");
+
+        lblPremiumPrice.setText("Premium: $265");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -143,52 +178,68 @@ public class frmSignUp extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(btnBack)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                        .addComponent(btnPay)
-                        .addGap(73, 73, 73))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boxMem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(btnBack)
+                                .addGap(55, 55, 55)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblPaymentMethod, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(btnPay)
+                                        .addComponent(boxPaymentMethod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblRegularPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(lblPremiumPrice, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(lblAmountPaid, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtAmountPaid, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblMemSign)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(lblPhoneNumber, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(lblName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblAge, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                                .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtAddress, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(boxGender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtPhoneNumber, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblAdress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
-                                .addComponent(txtAge, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boxMem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(lblMemSign)
-                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(lblAdress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(boxGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(62, 62, 62)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblAge, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(72, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(lblMemSign)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(lblName)
                 .addGap(12, 12, 12)
                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblAge))
                 .addGap(18, 18, 18)
-                .addComponent(boxGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblAge)
-                .addGap(18, 18, 18)
-                .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boxGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(lblAdress)
                 .addGap(18, 18, 18)
@@ -202,14 +253,26 @@ public class frmSignUp extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(lblPaymentMethod))
                 .addGap(18, 18, 18)
-                .addComponent(boxMem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boxMem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxPaymentMethod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(lblRegularPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(lblPremiumPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAmountPaid)
+                    .addComponent(txtAmountPaid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack)
                     .addComponent(btnPay))
-                .addGap(22, 22, 22))
+                .addContainerGap())
         );
 
         pack();
@@ -240,26 +303,50 @@ public class frmSignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_boxGenderActionPerformed
 
     private void boxMemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxMemActionPerformed
- 
-           
+        toggle();
     }//GEN-LAST:event_boxMemActionPerformed
 
     private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
-        // TODO add your handling code here:
+        String name = txtName.getText();
+        String address = txtAddress.getText();
+        String phone = txtPhoneNumber.getText();
+        String age = txtAge.getText();
+        String email = txtEmail.getText();
+        String gender = (String) boxGender.getSelectedItem();
+        String membershipType = boxMem.getSelectedItem().toString();
+        String amountPaidStr = txtAmountPaid.getText();
+        String paymentMethod = boxPaymentMethod.getSelectedItem().toString();
+
         
-            String name = txtName.getText();
-            String address = txtAddress.getText();
-            String phone = txtPhoneNumber.getText();
-            String age = txtAge.getText();
-            String email = txtEmail.getText();
-            int gender = boxGender.getSelectedIndex();
-            //String amountStr = amountField.getText();
+        if (!phone.matches("\\d{3}-\\d{3}-\\d{4}")) {
+           JOptionPane.showMessageDialog(null, "Invalid phone number format. Use xxx-xxx-xxxx.");
+           return;
+        }
         
-               if (!phone.matches("\\d{3}-\\d{3}-\\d{4}")) {
-                JOptionPane.showMessageDialog(null, "Invalid phone number format. Use xxx-xxx-xxxx.");
-                return;
-               }
+        double amountPaid = Double.parseDouble(amountPaidStr);
+        double requiredAmount = membershipType.equals("Regular") ? 180.0 : 265.0;
+
+        if (amountPaid >= requiredAmount) {
+            Payment.makePayment(amountPaid, paymentMethod);
+            Member newMember = new Member(name, Integer.parseInt(age), gender, address, email, phone,membershipType);
+            addMember(newMember);        
+            // Payment successful, display message
+            JOptionPane.showMessageDialog(null, "Payment successful!");
+            JOptionPane.showMessageDialog(this, "Member was signed up successfully!");
+        }else{
+            JOptionPane.showMessageDialog(null, "Insufficient amount paid. Required amount: $" + requiredAmount);     
+        }
+        txtName.setText("");
+        txtAge.setText("");
+        boxGender.setSelectedIndex(0);
+        txtEmail.setText("");
+        txtPhoneNumber.setText("");
+        txtAddress.setText("");
+        txtAmountPaid.setText("");
+
+        pack();
         
+       /* 
         if(boxMem.getSelectedItem().toString().equals("Premium")){
             dispose();
             new frmPremMainMenu().setVisible(true);
@@ -267,7 +354,7 @@ public class frmSignUp extends javax.swing.JFrame {
         if(boxMem.getSelectedItem().toString().equals("Regular")){
             dispose();
             new frmRegMainMenu().setVisible(true);
-       }
+       }*/
         
         
         
@@ -277,27 +364,50 @@ public class frmSignUp extends javax.swing.JFrame {
         dispose();
         new frmMemberMenu().setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void boxPaymentMethodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxPaymentMethodActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxPaymentMethodActionPerformed
    
  
+    public void addMember(Member member) {
+        members.add(member);
+        Serialize("Memeber.ser");
+    }
     
+      public void Serialize(String path){
     
-    /**
-     * @param args the command line arguments
-     */
-    private ArrayList<Member> loadMembers() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("members.ser"))) {
+        try {
+           FileOutputStream fos = new FileOutputStream(path);
+           ObjectOutputStream oos = new ObjectOutputStream(fos);
+           oos.writeObject(members);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+      public ArrayList<Member> loadMembers() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Member.ser"))) {
             return (ArrayList<Member>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             return new ArrayList<>();
         }
     }
+    
+    /**
+     * @param args the command line arguments
+     */
+   
 
+
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox boxFemale;
     private javax.swing.JComboBox<String> boxGender;
     private javax.swing.JCheckBox boxMale;
     private javax.swing.JComboBox<String> boxMem;
     private javax.swing.JCheckBox boxOther;
+    private javax.swing.JComboBox<String> boxPaymentMethod;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnPay;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -307,14 +417,21 @@ public class frmSignUp extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblAdress;
     private javax.swing.JLabel lblAge;
+    private javax.swing.JLabel lblAmountPaid;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblMemSign;
     private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblPaymentMethod;
     private javax.swing.JLabel lblPhoneNumber;
+    private javax.swing.JLabel lblPremiumPrice;
+    private javax.swing.JLabel lblRegularPrice;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtAge;
+    private javax.swing.JTextField txtAmountPaid;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPhoneNumber;
     // End of variables declaration//GEN-END:variables
+
+    
 }

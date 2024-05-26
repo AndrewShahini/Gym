@@ -4,6 +4,10 @@
  */
 package gym;
 
+import static gym.Gym.members;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author shahi
@@ -15,6 +19,8 @@ public class frmFindMember extends javax.swing.JFrame {
      */
     public frmFindMember() {
         initComponents();
+        Member.loadMembers();
+        updateMember(Gym.members);
     }
 
     /**
@@ -40,12 +46,13 @@ public class frmFindMember extends javax.swing.JFrame {
         txtMemGender = new javax.swing.JTextField();
         lblMemPhoneNumber = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listOfMembers = new javax.swing.JList<>();
         txtMemPhone = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         lblMemEmail = new javax.swing.JLabel();
         txtMemEmail = new javax.swing.JTextField();
         lblMemAddress = new javax.swing.JLabel();
+        btnReset = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -107,14 +114,8 @@ public class frmFindMember extends javax.swing.JFrame {
 
         lblMemPhoneNumber.setText("Phone Number");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listOfMembers);
 
-        txtMemPhone.setText("xxx-xxx-xxxx");
         txtMemPhone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMemPhoneActionPerformed(evt);
@@ -138,6 +139,13 @@ public class frmFindMember extends javax.swing.JFrame {
 
         lblMemAddress.setText("Address");
 
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -158,18 +166,20 @@ public class frmFindMember extends javax.swing.JFrame {
                     .addComponent(txtMemID, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMemName, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
-                        .addComponent(btnSearch)
-                        .addGap(92, 92, 92))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnBack1)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1))))
-                .addContainerGap())
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnReset)
+                        .addGap(54, 54, 54)
+                        .addComponent(btnSearch)
+                        .addGap(74, 74, 74))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(197, 197, 197)
                 .addComponent(lblFindMember)
@@ -203,7 +213,9 @@ public class frmFindMember extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblMemEmail)
-                    .addComponent(btnSearch))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnSearch)
+                        .addComponent(btnReset)))
                 .addGap(18, 18, 18)
                 .addComponent(txtMemEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -253,13 +265,74 @@ public class frmFindMember extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMemPhoneActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:
+        searchMembers();
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void txtMemEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMemEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMemEmailActionPerformed
 
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+    
+    txtMemID.setText("");
+    txtMemName.setText("");
+    txtMemGender.setText("");
+    txtMemPhone.setText("");
+    txtMemEmail.setText("");
+    txtMemAddress.setText("");
+    
+    // Show the entire list of employees again
+    updateMember(Gym.members);
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    
+      private void searchMembers() {
+        String memId = txtMemID.getText().trim();
+        String name = txtMemName.getText().trim();
+        String gender = txtMemGender.getText().trim();
+        String phoneNumber = txtMemPhone.getText().trim();
+        String email = txtMemEmail.getText().trim();
+        String address = txtMemAddress.getText().trim();
+
+
+        ArrayList<Member> filteredList = new ArrayList<>();
+        for (Member mem : Gym.members) {
+            boolean matches = true;
+        if (!memId.isEmpty() && !mem.getMemberId().contains(memId)) {
+            matches = false;
+        }
+        if (!name.isEmpty() && !mem.getName().toLowerCase().contains(name.toLowerCase())) {
+            matches = false;
+        }
+        if (!gender.isEmpty() && !mem.getGender().equalsIgnoreCase(gender)) {
+            matches = false;
+        }
+        if (!phoneNumber.isEmpty() && !mem.getPhoneNumber().contains(phoneNumber)) {
+            matches = false;
+        }
+        if (!email.isEmpty() && !mem.getEmail().equalsIgnoreCase(email)) {
+            matches = false;
+        }
+        if (!address.isEmpty() && !mem.getAddress().toLowerCase().contains(address.toLowerCase())) {
+            matches = false;
+        }
+        if (matches) {
+            filteredList.add(mem);
+        }
+      }
+        updateMember(filteredList);
+    }
+    
+     private void updateMember(ArrayList<Member> members) {
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        for (Member mem : members) {
+            listModel.addElement(mem.toString());//getName() + " - " + emp.getEmployeeId());
+        }
+        listOfMembers.setModel(listModel);
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -298,9 +371,9 @@ public class frmFindMember extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBack1;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblFindMember;
@@ -310,6 +383,7 @@ public class frmFindMember extends javax.swing.JFrame {
     private javax.swing.JLabel lblMemID;
     private javax.swing.JLabel lblMemName;
     private javax.swing.JLabel lblMemPhoneNumber;
+    private javax.swing.JList<String> listOfMembers;
     private javax.swing.JTextField txtMemAddress;
     private javax.swing.JTextField txtMemEmail;
     private javax.swing.JTextField txtMemGender;

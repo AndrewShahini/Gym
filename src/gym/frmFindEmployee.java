@@ -31,6 +31,8 @@ public class frmFindEmployee extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblEmpRole = new javax.swing.JLabel();
+        txtEmpRole = new javax.swing.JTextField();
         lblFindEmployee = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         lblEmpID = new javax.swing.JLabel();
@@ -51,8 +53,14 @@ public class frmFindEmployee extends javax.swing.JFrame {
         btnReset = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtEmpAge = new javax.swing.JTextField();
-        lblEmpRole = new javax.swing.JLabel();
-        txtEmpRole = new javax.swing.JTextField();
+
+        lblEmpRole.setText("Role");
+
+        txtEmpRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmpRoleActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,7 +100,6 @@ public class frmFindEmployee extends javax.swing.JFrame {
 
         lblEmpPhoneNumber.setText("Phone Number");
 
-        txtEmpPhoneNumber.setText("xxx-xxx-xxxx");
         txtEmpPhoneNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmpPhoneNumberActionPerformed(evt);
@@ -139,14 +146,6 @@ public class frmFindEmployee extends javax.swing.JFrame {
             }
         });
 
-        lblEmpRole.setText("Role");
-
-        txtEmpRole.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmpRoleActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,8 +174,7 @@ public class frmFindEmployee extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtEmpAge, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtEmpGender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE))
-                            .addComponent(lblEmpRole, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtEmpGender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -194,8 +192,7 @@ public class frmFindEmployee extends javax.swing.JFrame {
                             .addComponent(lblEmpEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtEmpAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblEmpAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmpEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmpRole, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtEmpEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -225,15 +222,12 @@ public class frmFindEmployee extends javax.swing.JFrame {
                         .addGap(21, 21, 21)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSearch)
-                    .addComponent(btnReset)
-                    .addComponent(lblEmpRole))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnSearch)
+                        .addComponent(btnReset))
+                    .addComponent(lblEmpPhoneNumber))
                 .addGap(18, 18, 18)
-                .addComponent(txtEmpRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(lblEmpPhoneNumber)
-                .addGap(0, 0, 0)
                 .addComponent(txtEmpPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblEmpEmail)
@@ -243,7 +237,7 @@ public class frmFindEmployee extends javax.swing.JFrame {
                 .addComponent(lblEmpAddress)
                 .addGap(18, 18, 18)
                 .addComponent(txtEmpAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addGap(26, 26, 26))
         );
@@ -313,7 +307,6 @@ public class frmFindEmployee extends javax.swing.JFrame {
         String phoneNumber = txtEmpPhoneNumber.getText().trim();
         String email = txtEmpEmail.getText().trim();
         String address = txtEmpAddress.getText().trim();
-        String role = txtEmpRole.getText().trim();
 
         int age = -1;
         if(!strAge.isEmpty()){
@@ -340,9 +333,6 @@ public class frmFindEmployee extends javax.swing.JFrame {
         if (age != -1 && emp.getAge() != age) { 
             matches = false;
         }
-        if (!role.isEmpty() && !emp.getRole().equalsIgnoreCase(role)){
-            matches = false;
-        }
         if (!phoneNumber.isEmpty() && !emp.getPhoneNumber().contains(phoneNumber)) {
             matches = false;
         }
@@ -355,7 +345,7 @@ public class frmFindEmployee extends javax.swing.JFrame {
         if (matches) {
             filteredList.add(emp);
         }
-    }
+      }
         updateEmployee(filteredList);
     }
     

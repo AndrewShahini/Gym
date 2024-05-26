@@ -4,7 +4,9 @@
  */
 package gym;
 
+import static gym.Gym.members;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -23,9 +25,15 @@ public class Member extends Person {
         this.membership = "";
     }
 
-    public Member(int memberId, String name, int age, String gender, String address, String email, String phoneNumber) {
+    public Member(int memberId, String name, int age, String gender, String address, String email, String phoneNumber,String membership) {
         super(name, age, gender, address, email, phoneNumber);
         this.memberId = String.valueOf(count++);
+        this.membership = membership;
+    }
+    public Member(String name, int age, String gender, String address, String email, String phoneNumber,String membership) {
+        super(name, age, gender, address, email, phoneNumber);
+        this.memberId = String.valueOf(count++);
+        this.membership = membership;
     }
 
     public static int getCount() {
@@ -102,15 +110,14 @@ public class Member extends Person {
 
     public void upgradeToPremium() {
         this.membership = "Premium";
+        
     }
 
     @Override
     public String toString() {
-        return memberId + ", " + name + ", " + membership;
+        return memberId + ", " + name + ", " + membership+ ", " + gender+ ", " + age + ", " +address+ ", " + email+ ", " + phoneNumber;
     }
-    
-
-
+   
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -129,6 +136,43 @@ public class Member extends Person {
         return false;
     }
 
+
+    public static void Serialize(String path){
+    
+        try {
+           FileOutputStream fos = new FileOutputStream(path);
+           ObjectOutputStream oos = new ObjectOutputStream(fos);
+           oos.writeObject(members);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    /*
+    public static ArrayList<Member> Deserialize(String path){
+        
+     ArrayList<Member> object = null;
+         try {
+            FileInputStream fis = new FileInputStream(path);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            members = (ArrayList<Member>) ois.readObject();
+            ois.close();
+            fis.close();
+            System.out.println(members);
+            return members;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return object;
+    }
+*/
+     public static ArrayList<Member> loadMembers() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Member.ser"))) {
+            return (ArrayList<Member>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            return new ArrayList<>();
+        }
+    }
 
       
 }

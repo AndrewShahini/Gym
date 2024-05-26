@@ -15,7 +15,7 @@ public class frmViewBooking extends javax.swing.JFrame {
     /**
      * Creates new form frmViewBooking
      */
-    private DefaultListModel<String> bookingListModel;
+    private static DefaultListModel<String> bookingListModel;
 
     public frmViewBooking() {
         initComponents();
@@ -86,11 +86,12 @@ public class frmViewBooking extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         dispose();
-        new frmBookingMenu().setVisible(true);
+        new frmBookTrainer().setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    public void addBooking(String memberName, String trainerName) {
+    public static void addBooking(String memberName, String trainerName) {
         bookingListModel.addElement(memberName + " is booked with " + trainerName);
+        
     }
     /**
      * @param args the command line arguments
