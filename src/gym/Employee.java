@@ -21,6 +21,8 @@ public class Employee extends Person {
     protected static int count = 1;
     protected String employeeId;
     protected String role;
+    private static final long serialVersionUID = 8442110548024887292L; // Replace this with the correct ID
+    
 
     public Employee() {
     super();
@@ -167,6 +169,10 @@ public class Employee extends Person {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+    @Override
+    public String toString() {
+        return employeeId + ", "+name+ ", "+role+ ", "+age+ ", "+gender+ ", "+address+ ", "+phoneNumber+ ", "+email; 
     }
     
 }

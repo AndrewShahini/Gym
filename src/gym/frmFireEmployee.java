@@ -4,17 +4,21 @@
  */
 package gym;
 
+import static gym.Gym.employees;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author shahi
  */
 public class frmFireEmployee extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frmFireEmployee
-     */
+    
+   
     public frmFireEmployee() {
         initComponents();
+        Employee.loadEmployeeList();
     }
 
     /**
@@ -33,7 +37,7 @@ public class frmFireEmployee extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listOfEmployee = new javax.swing.JList<>();
         btnSearch = new javax.swing.JButton();
         btnFireEmp = new javax.swing.JButton();
         lblEmpRole = new javax.swing.JLabel();
@@ -67,7 +71,7 @@ public class frmFireEmployee extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listOfEmployee);
 
         btnSearch.setText("Search");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -166,11 +170,48 @@ public class frmFireEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:
+    String empId = txtEmployeeId.getText().trim();
+    String empName = jTextField1.getText().trim();
+    String empRole = txtEmpRole.getText().trim();
+
+    DefaultListModel<String> listModel = new DefaultListModel<>();
+
+    for (Employee emp : employees) {
+        boolean match = true;
+        if (!empId.isEmpty() && !emp.getEmployeeId().equals(empId)) {
+            match = false;
+        }
+        if (!empName.isEmpty() && !emp.getName().equalsIgnoreCase(empName)) {
+            match = false;
+        }
+        if (!empRole.isEmpty() && !emp.getRole().equalsIgnoreCase(empRole)) {
+            match = false;
+        }
+        if (match) {
+            listModel.addElement(emp.toString());
+        }
+    }
+
+    listOfEmployee.setModel(listModel);
+
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnFireEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFireEmpActionPerformed
-        // TODO add your handling code here:
+        int selectedIndex = listOfEmployee.getSelectedIndex();
+    if (selectedIndex != -1) {
+        String selectedEmployee = listOfEmployee.getSelectedValue();
+        for (int i = 0; i < employees.size(); i++) {
+            if (employees.get(i).toString().equals(selectedEmployee)) {
+                employees.remove(i);
+                break;
+            }
+        }
+        Employee.saveEmployeeList();
+        btnSearchActionPerformed(evt);  // Refresh the list
+    } else {
+        JOptionPane.showMessageDialog(this, "Please select an employee to fire.");
+    }
+
     }//GEN-LAST:event_btnFireEmpActionPerformed
 
     private void txtEmpRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpRoleActionPerformed
@@ -218,11 +259,11 @@ public class frmFireEmployee extends javax.swing.JFrame {
     private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblEmpRole;
     private javax.swing.JLabel lblFireEmployee;
+    private javax.swing.JList<String> listOfEmployee;
     private javax.swing.JTextField txtEmpRole;
     private javax.swing.JTextField txtEmployeeId;
     // End of variables declaration//GEN-END:variables

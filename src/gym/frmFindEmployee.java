@@ -313,6 +313,7 @@ public class frmFindEmployee extends javax.swing.JFrame {
         String phoneNumber = txtEmpPhoneNumber.getText().trim();
         String email = txtEmpEmail.getText().trim();
         String address = txtEmpAddress.getText().trim();
+        String role = txtEmpRole.getText().trim();
 
         int age = -1;
         if(!strAge.isEmpty()){
@@ -339,10 +340,12 @@ public class frmFindEmployee extends javax.swing.JFrame {
         if (age != -1 && emp.getAge() != age) { 
             matches = false;
         }
+        if (!role.isEmpty() && !emp.getRole().equalsIgnoreCase(role)){
+            matches = false;
+        }
         if (!phoneNumber.isEmpty() && !emp.getPhoneNumber().contains(phoneNumber)) {
             matches = false;
         }
-        
         if (!email.isEmpty() && !emp.getEmail().equalsIgnoreCase(email)) {
             matches = false;
         }
@@ -359,7 +362,7 @@ public class frmFindEmployee extends javax.swing.JFrame {
      private void updateEmployee(ArrayList<Employee> employees) {
         DefaultListModel<String> listModel = new DefaultListModel<>();
         for (Employee emp : employees) {
-            listModel.addElement(emp.getName() + " - " + emp.getEmployeeId());
+            listModel.addElement(emp.toString());//getName() + " - " + emp.getEmployeeId());
         }
         listOfEmployees.setModel(listModel);
     }

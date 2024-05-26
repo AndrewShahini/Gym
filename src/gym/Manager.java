@@ -128,10 +128,7 @@ public class Manager extends Employee {
         this.phoneNumber = phoneNumber;
     }
 
-    @Override
-    public String toString() {
-        return employeeId + ", "+name+ ", "+role+ ", "+age+ ", "+gender+ ", "+address+ ", "+phoneNumber+ ", "+email; 
-    }
+
 
     
 }

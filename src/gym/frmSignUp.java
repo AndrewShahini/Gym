@@ -48,7 +48,7 @@ public class frmSignUp extends javax.swing.JFrame {
         txtPhoneNumber = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
         btnPay = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        boxGender = new javax.swing.JComboBox<>();
         lblMemSign = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         boxMem = new javax.swing.JComboBox<>();
@@ -117,10 +117,10 @@ public class frmSignUp extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        boxGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
+        boxGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                boxGenderActionPerformed(evt);
             }
         });
 
@@ -159,12 +159,11 @@ public class frmSignUp extends javax.swing.JFrame {
                                 .addComponent(lblEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
                                 .addComponent(txtAddress, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(boxGender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtPhoneNumber, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtAge, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                    .addComponent(lblAdress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)))
+                                .addComponent(lblAdress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                                .addComponent(txtAge, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(boxMem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -185,7 +184,7 @@ public class frmSignUp extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(boxGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblAge)
                 .addGap(18, 18, 18)
@@ -236,9 +235,9 @@ public class frmSignUp extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void boxGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxGenderActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_boxGenderActionPerformed
 
     private void boxMemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxMemActionPerformed
  
@@ -247,6 +246,20 @@ public class frmSignUp extends javax.swing.JFrame {
 
     private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
         // TODO add your handling code here:
+        
+            String name = txtName.getText();
+            String address = txtAddress.getText();
+            String phone = txtPhoneNumber.getText();
+            String age = txtAge.getText();
+            String email = txtEmail.getText();
+            int gender = boxGender.getSelectedIndex();
+            //String amountStr = amountField.getText();
+        
+               if (!phone.matches("\\d{3}-\\d{3}-\\d{4}")) {
+                JOptionPane.showMessageDialog(null, "Invalid phone number format. Use xxx-xxx-xxxx.");
+                return;
+               }
+        
         if(boxMem.getSelectedItem().toString().equals("Premium")){
             dispose();
             new frmPremMainMenu().setVisible(true);
@@ -254,7 +267,10 @@ public class frmSignUp extends javax.swing.JFrame {
         if(boxMem.getSelectedItem().toString().equals("Regular")){
             dispose();
             new frmRegMainMenu().setVisible(true);
-       }      
+       }
+        
+        
+        
     }//GEN-LAST:event_btnPayActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -262,6 +278,9 @@ public class frmSignUp extends javax.swing.JFrame {
         new frmMemberMenu().setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
    
+ 
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -275,6 +294,7 @@ public class frmSignUp extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox boxFemale;
+    private javax.swing.JComboBox<String> boxGender;
     private javax.swing.JCheckBox boxMale;
     private javax.swing.JComboBox<String> boxMem;
     private javax.swing.JCheckBox boxOther;
@@ -283,7 +303,6 @@ public class frmSignUp extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblAdress;
