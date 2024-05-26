@@ -24,9 +24,9 @@ public class Gym {
                 new frmLogin().setVisible(true);
             }
         });
-       Manager m = new Manager(1);
+       Manager m = new Manager(1,"Manager","Andrew", 18, "Male", "123 park", "Andrew@gmail.com","514-612-3244");
         //startUp();
-    
+ 
     }
     
     public static void startUp(){
@@ -34,6 +34,8 @@ public class Gym {
     }
     
     public static ArrayList<Member> members = new ArrayList<>();
+    public static ArrayList<Trainer> trainers = new ArrayList<>();
+    public static ArrayList<Employee> employees = new ArrayList<>();
 
     public static ArrayList<Member> Deserialize(String path){
         

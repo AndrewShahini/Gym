@@ -15,7 +15,6 @@ public class Member extends Person implements Serializable{
     
     private static int count = 0;
     public String memberId;
-    private String dateOfBirth;
     public String membership;
 
     public Member() {
@@ -24,10 +23,9 @@ public class Member extends Person implements Serializable{
         this.membership = "";
     }
 
-    public Member(int memberId, String dateOfBirth, String name, int age, String gender, String address, String email, String phoneNumber) {
+    public Member(int memberId, String name, int age, String gender, String address, String email, String phoneNumber) {
         super(name, age, gender, address, email, phoneNumber);
         this.memberId = String.valueOf(count++);
-        this.dateOfBirth = dateOfBirth;
     }
 
     public static int getCount() {
@@ -78,14 +76,6 @@ public class Member extends Person implements Serializable{
         this.address = address;
     }
 
-    public String getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
     public String getMembership() {
         return membership;
     }
@@ -112,6 +102,11 @@ public class Member extends Person implements Serializable{
 
     public void upgradeToPremium() {
         this.membership = "Premium";
+    }
+
+    @Override
+    public String toString() {
+        return memberId + ", " + name + ", " + membership;
     }
     
 

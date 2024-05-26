@@ -70,16 +70,18 @@
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                               <Component id="lblPhoneNumber" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="lblName" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
-                              <Component id="lblDOB" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
+                              <Component id="lblAge" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
                               <Component id="jLabel1" alignment="0" min="-2" pref="49" max="-2" attributes="0"/>
-                              <Component id="lblAdress" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
                               <Component id="lblEmail" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
                               <Component id="txtName" alignment="0" pref="295" max="32767" attributes="0"/>
-                              <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtAddress" alignment="0" max="32767" attributes="0"/>
                               <Component id="jComboBox1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="txtEmail" alignment="0" max="32767" attributes="0"/>
                               <Component id="txtPhoneNumber" alignment="0" max="32767" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="txtAge" alignment="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="lblAdress" alignment="0" pref="55" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                           <Component id="jLabel2" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
                           <Component id="boxMem" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -109,9 +111,9 @@
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="lblDOB" min="-2" max="-2" attributes="0"/>
+              <Component id="lblAge" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+              <Component id="txtAge" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="lblAdress" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -151,14 +153,14 @@
         <Property name="text" type="java.lang.String" value="Gender"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblDOB">
+    <Component class="javax.swing.JLabel" name="lblAge">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Date Of Birth"/>
+        <Property name="text" type="java.lang.String" value="Age"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="txtAge">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAgeActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblAdress">

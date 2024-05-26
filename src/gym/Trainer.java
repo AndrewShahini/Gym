@@ -12,27 +12,18 @@ import java.util.Objects;
  */
 public class Trainer extends Employee{
     
-    private String specialist;
 
     public Trainer() {
         this.role = "Trainer";
     }
 
-    public Trainer(String specialist) {
-        this.specialist = specialist;
+    public Trainer(int employeeId, String role, String name, int age, String gender, String address, String email, String phoneNumber) {
+        super(employeeId, role, name, age, gender, address, email, phoneNumber);
     }
 
-    public Trainer(String specialist, int employeeId, String role) {
+
+    public Trainer(int employeeId, String role) {
         super(employeeId, role);
-        this.specialist = specialist;
-    }
-
-    public String getSpecialist() {
-        return specialist;
-    }
-
-    public void setSpecialist(String specialist) {
-        this.specialist = specialist;
     }
 
     public static int getCount() {
@@ -92,11 +83,11 @@ public class Trainer extends Employee{
     }
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.specialist);
-        return hash;
+    public String toString() {
+        return employeeId+ ", "+name+ ", "+role+ ", "+age+ ", "+gender+ ", "+address+ ", "+phoneNumber;
     }
+
+ 
 
     @Override
     public boolean equals(Object obj) {
@@ -110,7 +101,7 @@ public class Trainer extends Employee{
             return false;
         }
         final Trainer other = (Trainer) obj;
-        return Objects.equals(this.specialist, other.specialist);
+        return false;
     }
     
     

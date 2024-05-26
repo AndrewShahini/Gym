@@ -23,11 +23,15 @@ public class Manager extends Employee {
     public Manager(int employeeId) {
         super(employeeId);
         this.username = "Andrew";
-        this.password = "123456";   
+        this.password = "123456";  
+        this.role = "Manger";
     }
 
     public Manager(int employeeId, String role, String name, int age, String gender, String address, String email, String phoneNumber) {
         super(employeeId, role, name, age, gender, address, email, phoneNumber);
+        this.username = "Andrew";
+        this.password = "123456";  
+        this.role = "Manger";
     }
     
        public Manager(int employeeId, String role, String name, int age, String gender, String address, String email, String phoneNumber,String username,String password) {
@@ -122,6 +126,11 @@ public class Manager extends Employee {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public String toString() {
+        return employeeId + ", "+name+ ", "+role+ ", "+age+ ", "+gender+ ", "+address+ ", "+phoneNumber+ ", "+email; 
     }
 
     

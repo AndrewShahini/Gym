@@ -26,15 +26,33 @@ public class frmFindMember extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblFindMember = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        lblFindMember = new javax.swing.JLabel();
+        btnBack1 = new javax.swing.JButton();
+        lblMemID = new javax.swing.JLabel();
+        txtMemID = new javax.swing.JTextField();
+        lblMemName = new javax.swing.JLabel();
+        txtMemAddress = new javax.swing.JTextField();
+        txtMemName = new javax.swing.JTextField();
+        lblMemGender = new javax.swing.JLabel();
+        txtMemGender = new javax.swing.JTextField();
+        lblMemPhoneNumber = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        txtMemPhone = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
+        lblMemEmail = new javax.swing.JLabel();
+        txtMemEmail = new javax.swing.JTextField();
+        lblMemAddress = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        lblFindMember.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        lblFindMember.setText("FIND MEMBER");
+        jTextField1.setText("jTextField1");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -45,44 +63,156 @@ public class frmFindMember extends javax.swing.JFrame {
 
         jLabel1.setText("Name");
 
-        jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblFindMember.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        lblFindMember.setText("FIND MEMBER");
+
+        btnBack1.setText("Back");
+        btnBack1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                btnBack1ActionPerformed(evt);
             }
         });
+
+        lblMemID.setText("Member ID");
+
+        txtMemID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMemIDActionPerformed(evt);
+            }
+        });
+
+        lblMemName.setText("Name");
+
+        txtMemAddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMemAddressActionPerformed(evt);
+            }
+        });
+
+        txtMemName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMemNameActionPerformed(evt);
+            }
+        });
+
+        lblMemGender.setText("Gender");
+
+        txtMemGender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMemGenderActionPerformed(evt);
+            }
+        });
+
+        lblMemPhoneNumber.setText("Phone Number");
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        txtMemPhone.setText("xxx-xxx-xxxx");
+        txtMemPhone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMemPhoneActionPerformed(evt);
+            }
+        });
+
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+
+        lblMemEmail.setText("Email");
+
+        txtMemEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMemEmailActionPerformed(evt);
+            }
+        });
+
+        lblMemAddress.setText("Address");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblMemID, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMemGender, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMemGender, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMemPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMemPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMemEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMemEmail)
+                    .addComponent(txtMemName)
+                    .addComponent(lblMemAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMemAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMemID, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMemName, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
+                        .addComponent(btnSearch)
+                        .addGap(92, 92, 92))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(lblFindMember))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnBack))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(124, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnBack1)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1))))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(197, 197, 197)
+                .addComponent(lblFindMember)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(lblFindMember)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
-                .addComponent(btnBack)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblMemID)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtMemID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(lblMemName)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtMemName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblMemGender)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtMemGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblMemPhoneNumber)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtMemPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblMemEmail)
+                    .addComponent(btnSearch))
+                .addGap(18, 18, 18)
+                .addComponent(txtMemEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblMemAddress)
+                .addGap(18, 18, 18)
+                .addComponent(txtMemAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnBack1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -96,6 +226,39 @@ public class frmFindMember extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
+        dispose();
+        new frmMemberMenu().setVisible(true);
+    }//GEN-LAST:event_btnBack1ActionPerformed
+
+    private void txtMemIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMemIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMemIDActionPerformed
+
+    private void txtMemAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMemAddressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMemAddressActionPerformed
+
+    private void txtMemNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMemNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMemNameActionPerformed
+
+    private void txtMemGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMemGenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMemGenderActionPerformed
+
+    private void txtMemPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMemPhoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMemPhoneActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void txtMemEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMemEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMemEmailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,8 +297,24 @@ public class frmFindMember extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnBack1;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblFindMember;
+    private javax.swing.JLabel lblMemAddress;
+    private javax.swing.JLabel lblMemEmail;
+    private javax.swing.JLabel lblMemGender;
+    private javax.swing.JLabel lblMemID;
+    private javax.swing.JLabel lblMemName;
+    private javax.swing.JLabel lblMemPhoneNumber;
+    private javax.swing.JTextField txtMemAddress;
+    private javax.swing.JTextField txtMemEmail;
+    private javax.swing.JTextField txtMemGender;
+    private javax.swing.JTextField txtMemID;
+    private javax.swing.JTextField txtMemName;
+    private javax.swing.JTextField txtMemPhone;
     // End of variables declaration//GEN-END:variables
 }
