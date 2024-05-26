@@ -201,7 +201,7 @@ public class frmUpgradeMember extends javax.swing.JFrame {
         if (selectedMember != null) {
             for (Member member : members) {
                 if (member.getName().equals(selectedMember)) {
-         
+                    member.upgradeToPremium();
                     saveMembers();
                     updateMemberList(members);
                     JOptionPane.showMessageDialog(this, "Member upgraded to premium!");
