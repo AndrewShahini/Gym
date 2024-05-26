@@ -17,12 +17,12 @@ public class Trainer extends Employee{
         this.role = "Trainer";
     }
 
-    public Trainer(int employeeId, String role, String name, int age, String gender, String address, String email, String phoneNumber) {
+    public Trainer(String employeeId, String role, String name, int age, String gender, String address, String email, String phoneNumber) {
         super(employeeId, role, name, age, gender, address, email, phoneNumber);
     }
 
 
-    public Trainer(int employeeId, String role) {
+    public Trainer(String employeeId, String role) {
         super(employeeId, role);
     }
 
@@ -34,11 +34,11 @@ public class Trainer extends Employee{
         Employee.count = count;
     }
 
-    public int getEmployeeId() {
+    public String getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
     }
 

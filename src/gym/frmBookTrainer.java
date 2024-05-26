@@ -2,25 +2,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+
 package gym;
 
+import static gym.Gym.employees;
 import static gym.Gym.members;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-
-/**
- *
- * @author shahi
- */
 public class frmBookTrainer extends javax.swing.JFrame {
 
-   private DefaultListModel<String> bookingListModel;
+    private DefaultListModel<String> memberListModel;
+    private DefaultListModel<String> trainerListModel;
+    private Member selectedMember;
+    private Employee selectedTrainer;
+    
+    private frmViewBooking viewBookingFrame;
     
     public frmBookTrainer() {
         initComponents();
-        bookingListModel = new DefaultListModel<>();
-        listOfPremMem.setModel(bookingListModel);
+        memberListModel = new DefaultListModel<>();
+        trainerListModel = new DefaultListModel<>();
+        listOfPremMem.setModel(memberListModel);
+        listOfTrainers.setModel(trainerListModel);
+        
+       viewBookingFrame = new frmViewBooking();
     }
 
     /**
@@ -43,6 +49,13 @@ public class frmBookTrainer extends javax.swing.JFrame {
         listOfPremMem = new javax.swing.JList<>();
         btnBook = new javax.swing.JButton();
         btnFindMem = new javax.swing.JButton();
+        btnFindEmp = new javax.swing.JButton();
+        lblEmpName = new javax.swing.JLabel();
+        txtEmpName = new javax.swing.JTextField();
+        lblEmpID = new javax.swing.JLabel();
+        txtEmpID = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listOfTrainers = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,41 +101,70 @@ public class frmBookTrainer extends javax.swing.JFrame {
             }
         });
 
+        btnFindEmp.setText("Find");
+        btnFindEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFindEmpActionPerformed(evt);
+            }
+        });
+
+        lblEmpName.setText("Name");
+
+        txtEmpName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmpNameActionPerformed(evt);
+            }
+        });
+
+        lblEmpID.setText("ID");
+
+        txtEmpID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmpIDActionPerformed(evt);
+            }
+        });
+
+        jScrollPane2.setViewportView(listOfTrainers);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(242, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(260, 260, 260))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                        .addGap(188, 188, 188)
+                        .addComponent(lblBookTrainer))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblMemName, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblMemID, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnFindMem))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnFindMem)
+                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 67, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblEmpName, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtEmpID, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblEmpID, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnFindEmp)
+                                    .addComponent(txtEmpName, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
+                        .addGap(48, 48, 48)
                         .addComponent(btnBack)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnBook)
-                        .addGap(126, 126, 126))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(188, 188, 188)
-                .addComponent(lblBookTrainer)
+                        .addGap(231, 231, 231)
+                        .addComponent(btnBook)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -130,12 +172,10 @@ public class frmBookTrainer extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblBookTrainer)
-                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblMemID)
-                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addComponent(lblMemID)
                         .addGap(18, 18, 18)
                         .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)
@@ -144,12 +184,34 @@ public class frmBookTrainer extends javax.swing.JFrame {
                         .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addComponent(btnFindMem))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBack)
-                    .addComponent(btnBook))
-                .addGap(16, 16, 16))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(lblEmpID)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtEmpID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addComponent(lblEmpName)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtEmpName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(btnFindEmp))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnBack)
+                        .addGap(52, 52, 52))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnBook)
+                        .addGap(42, 42, 42))))
         );
 
         pack();
@@ -169,7 +231,7 @@ public class frmBookTrainer extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIDActionPerformed
 
     private void btnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookActionPerformed
-        
+    /*    
      TrainerSelectionDialog trainerSelectionDialog = new TrainerSelectionDialog(this);
         trainerSelectionDialog.setVisible(true);
 
@@ -178,13 +240,37 @@ public class frmBookTrainer extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Successfully booked " + selectedTrainer);
             bookingListModel.addElement("Booked " + selectedTrainer + " for " + listOfPremMem.getSelectedValue());
         }  
-        
+      */
+    
+    if (selectedMember == null || selectedTrainer == null) {
+            JOptionPane.showMessageDialog(this, "Please select a premium member and a trainer.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Book trainer for selected member (logic to create a booking record)
+        viewBookingFrame.addBooking(selectedMember.getName(), selectedTrainer.getName());
+        // Example: Display a message
+        JOptionPane.showMessageDialog(this, "Trainer booked for member.", "Success", JOptionPane.INFORMATION_MESSAGE);
+       
+    
     }//GEN-LAST:event_btnBookActionPerformed
 
     private void btnFindMemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindMemActionPerformed
         String memberId = txtID.getText();
         String memberName= txtName.getText();
         
+        memberListModel.clear();
+        
+        for (Member member : members) {
+            if (member.membership.equalsIgnoreCase("premium") &&
+                (member.getMemberId().equals(memberId) || member.getName().equalsIgnoreCase(memberName))) {
+                memberListModel.addElement(member.toString());
+            }
+        }
+        if (memberListModel.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Premium member not found.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+       /* 
         DefaultListModel<String> list = new DefaultListModel<>();
         
         for(Member member : members)  
@@ -200,9 +286,65 @@ public class frmBookTrainer extends javax.swing.JFrame {
             listOfPremMem.setModel(list);
             btnBook.setEnabled(true);
         } 
-        
+        */
     }//GEN-LAST:event_btnFindMemActionPerformed
 
+    private void btnFindEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindEmpActionPerformed
+        String empId = txtEmpID.getText().trim();
+        String empName = txtEmpName.getText().trim();
+        
+        trainerListModel.clear();
+        selectedTrainer = null;
+        
+        for (Employee employee : employees) {
+            if (employee.getRole().equalsIgnoreCase("trainer") &&
+            (employee.getEmployeeId().equalsIgnoreCase(empId) || employee.getName().equalsIgnoreCase(empName))) {
+            trainerListModel.addElement(employee.toString());
+             }   
+        }   
+
+        if (trainerListModel.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No trainers available.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_btnFindEmpActionPerformed
+
+    private void txtEmpNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmpNameActionPerformed
+
+    private void txtEmpIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmpIDActionPerformed
+
+    
+    private void listOfPremMemValueChanged(javax.swing.event.ListSelectionEvent evt) {                                            
+        if (!evt.getValueIsAdjusting()) {
+            int selectedIndex = listOfPremMem.getSelectedIndex();
+            if (selectedIndex != -1) {
+                // Retrieve the selected premium member
+                selectedMember = members.get(selectedIndex);
+            }
+        }
+    }                                           
+
+    private void listOfTrainersValueChanged(javax.swing.event.ListSelectionEvent evt) {                                            
+        if (!evt.getValueIsAdjusting()) {
+            int selectedIndex = listOfTrainers.getSelectedIndex();
+            if (selectedIndex != -1) {
+                // Retrieve the selected trainer
+                selectedTrainer = employees.get(selectedIndex);
+            }
+        }
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -241,13 +383,20 @@ public class frmBookTrainer extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBook;
+    private javax.swing.JButton btnFindEmp;
     private javax.swing.JButton btnFindMem;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblBookTrainer;
+    private javax.swing.JLabel lblEmpID;
+    private javax.swing.JLabel lblEmpName;
     private javax.swing.JLabel lblMemID;
     private javax.swing.JLabel lblMemName;
     private javax.swing.JList<String> listOfPremMem;
+    private javax.swing.JList<String> listOfTrainers;
+    private javax.swing.JTextField txtEmpID;
+    private javax.swing.JTextField txtEmpName;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables

@@ -11,9 +11,9 @@ import java.util.Objects;
  *
  * @author shahi
  */
-public class Member extends Person implements Serializable{
+public class Member extends Person {
     
-    private static int count = 0;
+    private static int count = 1;
     public String memberId;
     public String membership;
 

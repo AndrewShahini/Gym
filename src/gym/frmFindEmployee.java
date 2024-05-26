@@ -4,6 +4,9 @@
  */
 package gym;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author shahi
@@ -15,6 +18,8 @@ public class frmFindEmployee extends javax.swing.JFrame {
      */
     public frmFindEmployee() {
         initComponents();
+        Employee.loadEmployeeList();
+        updateEmployee(Gym.employees);
     }
 
     /**
@@ -41,8 +46,13 @@ public class frmFindEmployee extends javax.swing.JFrame {
         lblEmpAddress = new javax.swing.JLabel();
         txtEmpAddress = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listOfEmployees = new javax.swing.JList<>();
         btnSearch = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txtEmpAge = new javax.swing.JTextField();
+        lblEmpRole = new javax.swing.JLabel();
+        txtEmpRole = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,12 +115,7 @@ public class frmFindEmployee extends javax.swing.JFrame {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listOfEmployees);
 
         btnSearch.setText("Search");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -119,10 +124,42 @@ public class frmFindEmployee extends javax.swing.JFrame {
             }
         });
 
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Age");
+
+        txtEmpAge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmpAgeActionPerformed(evt);
+            }
+        });
+
+        lblEmpRole.setText("Role");
+
+        txtEmpRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmpRoleActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(204, 204, 204)
+                        .addComponent(btnBack))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(lblFindEmployee)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,40 +170,38 @@ public class frmFindEmployee extends javax.swing.JFrame {
                                 .addComponent(lblEmpName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtEmpID, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lblEmpGender, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmpGender, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblEmpPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmpPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblEmpEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtEmpName, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblEmpAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtEmpAge, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtEmpGender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE))
+                            .addComponent(lblEmpRole, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnSearch)
-                                .addGap(92, 92, 92))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(24, Short.MAX_VALUE))))
+                                .addContainerGap(24, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnReset)
+                                .addGap(52, 52, 52)
+                                .addComponent(btnSearch)
+                                .addGap(58, 58, 58))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtEmpAddress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                            .addComponent(txtEmpEmail, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtEmpPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEmpEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmpAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEmpAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmpEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmpRole, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(204, 204, 204)
-                        .addComponent(btnBack))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(lblFindEmployee)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addComponent(lblEmpID)
@@ -181,18 +216,27 @@ public class frmFindEmployee extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtEmpGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(lblEmpPhoneNumber)
+                        .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(txtEmpPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtEmpAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblFindEmployee)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(21, 21, 21)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblEmpEmail)
-                    .addComponent(btnSearch))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSearch)
+                    .addComponent(btnReset)
+                    .addComponent(lblEmpRole))
+                .addGap(18, 18, 18)
+                .addComponent(txtEmpRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(lblEmpPhoneNumber)
+                .addGap(0, 0, 0)
+                .addComponent(txtEmpPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblEmpEmail)
                 .addGap(18, 18, 18)
                 .addComponent(txtEmpEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -201,7 +245,7 @@ public class frmFindEmployee extends javax.swing.JFrame {
                 .addComponent(txtEmpAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnBack)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -237,9 +281,88 @@ public class frmFindEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmpAddressActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:
+        searchEmployees();
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+    txtEmpID.setText("");
+    txtEmpName.setText("");
+    txtEmpGender.setText("");
+    txtEmpPhoneNumber.setText("");
+    txtEmpEmail.setText("");
+    txtEmpAddress.setText("");
+    
+    // Show the entire list of employees again
+    updateEmployee(Gym.employees);
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void txtEmpAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpAgeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmpAgeActionPerformed
+
+    private void txtEmpRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpRoleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmpRoleActionPerformed
+
+    
+    private void searchEmployees() {
+        String empId = txtEmpID.getText().trim();
+        String name = txtEmpName.getText().trim();
+        String gender = txtEmpGender.getText().trim();
+        String strAge = txtEmpAge.getText().trim();
+        String phoneNumber = txtEmpPhoneNumber.getText().trim();
+        String email = txtEmpEmail.getText().trim();
+        String address = txtEmpAddress.getText().trim();
+
+        int age = -1;
+        if(!strAge.isEmpty()){
+            try{
+                age = Integer.parseInt(strAge);
+            
+            }catch(NumberFormatException e){
+                System.out.println(e.getStackTrace());
+            }
+        }
+        
+        ArrayList<Employee> filteredList = new ArrayList<>();
+        for (Employee emp : Gym.employees) {
+            boolean matches = true;
+        if (!empId.isEmpty() && !emp.getEmployeeId().contains(empId)) {
+            matches = false;
+        }
+        if (!name.isEmpty() && !emp.getName().toLowerCase().contains(name.toLowerCase())) {
+            matches = false;
+        }
+        if (!gender.isEmpty() && !emp.getGender().equalsIgnoreCase(gender)) {
+            matches = false;
+        }
+        if (age != -1 && emp.getAge() != age) { 
+            matches = false;
+        }
+        if (!phoneNumber.isEmpty() && !emp.getPhoneNumber().contains(phoneNumber)) {
+            matches = false;
+        }
+        
+        if (!email.isEmpty() && !emp.getEmail().equalsIgnoreCase(email)) {
+            matches = false;
+        }
+        if (!address.isEmpty() && !emp.getAddress().toLowerCase().contains(address.toLowerCase())) {
+            matches = false;
+        }
+        if (matches) {
+            filteredList.add(emp);
+        }
+    }
+        updateEmployee(filteredList);
+    }
+    
+     private void updateEmployee(ArrayList<Employee> employees) {
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        for (Employee emp : employees) {
+            listModel.addElement(emp.getName() + " - " + emp.getEmployeeId());
+        }
+        listOfEmployees.setModel(listModel);
+    }
     /**
      * @param args the command line arguments
      */
@@ -277,8 +400,9 @@ public class frmFindEmployee extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblEmpAddress;
     private javax.swing.JLabel lblEmpEmail;
@@ -286,12 +410,16 @@ public class frmFindEmployee extends javax.swing.JFrame {
     private javax.swing.JLabel lblEmpID;
     private javax.swing.JLabel lblEmpName;
     private javax.swing.JLabel lblEmpPhoneNumber;
+    private javax.swing.JLabel lblEmpRole;
     private javax.swing.JLabel lblFindEmployee;
+    private javax.swing.JList<String> listOfEmployees;
     private javax.swing.JTextField txtEmpAddress;
+    private javax.swing.JTextField txtEmpAge;
     private javax.swing.JTextField txtEmpEmail;
     private javax.swing.JTextField txtEmpGender;
     private javax.swing.JTextField txtEmpID;
     private javax.swing.JTextField txtEmpName;
     private javax.swing.JTextField txtEmpPhoneNumber;
+    private javax.swing.JTextField txtEmpRole;
     // End of variables declaration//GEN-END:variables
 }

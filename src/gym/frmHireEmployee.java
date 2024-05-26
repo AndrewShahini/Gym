@@ -4,6 +4,9 @@
  */
 package gym;
 
+import static gym.Gym.employees;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author shahi
@@ -15,6 +18,7 @@ public class frmHireEmployee extends javax.swing.JFrame {
      */
     public frmHireEmployee() {
         initComponents();
+        Employee.loadEmployeeList();
     }
 
     /**
@@ -31,16 +35,18 @@ public class frmHireEmployee extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtEmpName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtEmpRole = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         boxGender = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtEmpPhone = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtEmpAddress = new javax.swing.JTextField();
         btnHire = new javax.swing.JButton();
+        txtEmpAge = new javax.swing.JTextField();
+        lblAge = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,6 +70,12 @@ public class frmHireEmployee extends javax.swing.JFrame {
 
         jLabel2.setText("Role");
 
+        txtEmpRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmpRoleActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("Gender");
 
         boxGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
@@ -83,7 +95,19 @@ public class frmHireEmployee extends javax.swing.JFrame {
 
         jLabel5.setText("Phone Number");
 
+        txtEmpPhone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmpPhoneActionPerformed(evt);
+            }
+        });
+
         jLabel6.setText("Address");
+
+        txtEmpAddress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmpAddressActionPerformed(evt);
+            }
+        });
 
         btnHire.setText("Hire");
         btnHire.addActionListener(new java.awt.event.ActionListener() {
@@ -91,6 +115,14 @@ public class frmHireEmployee extends javax.swing.JFrame {
                 btnHireActionPerformed(evt);
             }
         });
+
+        txtEmpAge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmpAgeActionPerformed(evt);
+            }
+        });
+
+        lblAge.setText("Age");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,16 +136,18 @@ public class frmHireEmployee extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtEmpRole, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(boxGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel5)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtEmpPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtEmail)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))
-                            .addComponent(txtEmpName, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtEmpAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))
+                            .addComponent(txtEmpName, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmpAge, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAge, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(117, 117, 117)
                         .addComponent(lblHireEmployee))
@@ -136,24 +170,28 @@ public class frmHireEmployee extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(txtEmpRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(boxGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(lblAge)
+                .addGap(18, 18, 18)
+                .addComponent(txtEmpAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtEmpPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(txtEmpAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack)
                     .addComponent(btnHire))
@@ -181,8 +219,51 @@ public class frmHireEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void btnHireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHireActionPerformed
-        // TODO add your handling code here:
+       String name = txtEmpName.getText();
+       String role = txtEmpRole.getText();
+       String gender = (String) boxGender.getSelectedItem();
+       String email = txtEmail.getText();
+       String phoneNumber = txtEmpPhone.getText();
+       String address = txtEmpAddress.getText();
+       int age = Integer.parseInt(txtEmpAge.getText());
+        
+      Employee newEmployee = new Employee(role, name, age, gender, address, email, phoneNumber);
+      employees.add(newEmployee);
+         
+      Employee.saveEmployeeList(); //serializes
+
+     // Clear the fields after hiring
+            txtEmpName.setText("");
+            txtEmpRole.setText("");
+            boxGender.setSelectedIndex(0);
+            txtEmail.setText("");
+            txtEmpPhone.setText("");
+            txtEmpAddress.setText("");
+            txtEmpAge.setText("");
+
+            JOptionPane.showMessageDialog(this, "Employee hired successfully!");
+        
+
+        pack();
+        
+        
     }//GEN-LAST:event_btnHireActionPerformed
+
+    private void txtEmpRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpRoleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmpRoleActionPerformed
+
+    private void txtEmpPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpPhoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmpPhoneActionPerformed
+
+    private void txtEmpAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpAddressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmpAddressActionPerformed
+
+    private void txtEmpAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmpAgeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmpAgeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,11 +310,13 @@ public class frmHireEmployee extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lblAge;
     private javax.swing.JLabel lblHireEmployee;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtEmpAddress;
+    private javax.swing.JTextField txtEmpAge;
     private javax.swing.JTextField txtEmpName;
+    private javax.swing.JTextField txtEmpPhone;
+    private javax.swing.JTextField txtEmpRole;
     // End of variables declaration//GEN-END:variables
 }

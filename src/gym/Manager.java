@@ -27,14 +27,14 @@ public class Manager extends Employee {
         this.role = "Manger";
     }
 
-    public Manager(int employeeId, String role, String name, int age, String gender, String address, String email, String phoneNumber) {
+    public Manager(String employeeId, String role, String name, int age, String gender, String address, String email, String phoneNumber) {
         super(employeeId, role, name, age, gender, address, email, phoneNumber);
         this.username = "Andrew";
         this.password = "123456";  
         this.role = "Manger";
     }
     
-       public Manager(int employeeId, String role, String name, int age, String gender, String address, String email, String phoneNumber,String username,String password) {
+       public Manager(String employeeId, String role, String name, int age, String gender, String address, String email, String phoneNumber,String username,String password) {
         super(employeeId, role, name, age, gender, address, email, phoneNumber);
         this.username = username;
         this.password = password;
@@ -48,11 +48,11 @@ public class Manager extends Employee {
         Employee.count = count;
     }
 
-    public int getEmployeeId() {
+    public String getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
     }
 

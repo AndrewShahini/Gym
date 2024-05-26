@@ -4,6 +4,8 @@
  */
 package gym;
 
+import javax.swing.*;
+
 /**
  *
  * @author shahi
@@ -13,8 +15,12 @@ public class frmViewBooking extends javax.swing.JFrame {
     /**
      * Creates new form frmViewBooking
      */
+    private DefaultListModel<String> bookingListModel;
+
     public frmViewBooking() {
         initComponents();
+        bookingListModel = new DefaultListModel<>();
+        listBookings.setModel(bookingListModel);
     }
 
     /**
@@ -36,11 +42,6 @@ public class frmViewBooking extends javax.swing.JFrame {
         lblViewBooking.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         lblViewBooking.setText("VIEW BOOKINGS");
 
-        listBookings.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(listBookings);
 
         btnBack.setText("Back");
@@ -54,25 +55,28 @@ public class frmViewBooking extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(99, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(lblViewBooking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(111, 111, 111))
             .addGroup(layout.createSequentialGroup()
-                .addGap(152, 152, 152)
-                .addComponent(btnBack)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addComponent(btnBack)))
+                .addContainerGap(68, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblViewBooking, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblViewBooking)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(btnBack)
                 .addGap(16, 16, 16))
         );
@@ -85,6 +89,9 @@ public class frmViewBooking extends javax.swing.JFrame {
         new frmBookingMenu().setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    public void addBooking(String memberName, String trainerName) {
+        bookingListModel.addElement(memberName + " is booked with " + trainerName);
+    }
     /**
      * @param args the command line arguments
      */

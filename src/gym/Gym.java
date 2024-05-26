@@ -24,8 +24,11 @@ public class Gym {
                 new frmLogin().setVisible(true);
             }
         });
-       Manager m = new Manager(1,"Manager","Andrew", 18, "Male", "123 park", "Andrew@gmail.com","514-612-3244");
-        //startUp();
+       Manager m = new Manager("1","Manager","Andrew", 18, "Male", "123 park", "Andrew@gmail.com","514-612-3244");
+       employees.add(m);
+
+
+//startUp();
  
     }
     
@@ -70,6 +73,8 @@ public class Gym {
         }
     }
     
+    
+ 
 
 }
     
