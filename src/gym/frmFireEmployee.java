@@ -197,17 +197,17 @@ public class frmFireEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnFireEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFireEmpActionPerformed
-        int selectedIndex = listOfEmployee.getSelectedIndex();
+        int selectedIndex = listOfEmployee.getSelectedIndex(); //selected with the mouse
         if (selectedIndex != -1) {
             String selectedEmployee = listOfEmployee.getSelectedValue();
-        for (int i = 0; i < employees.size(); i++) {
+        for (int i = 0; i < employees.size(); i++) { //loops through the ArrayList till it finds the member to delete
             if (employees.get(i).toString().equals(selectedEmployee)) {
                 employees.remove(i);
                 JOptionPane.showMessageDialog(this, "You've been FIREDDD");
                 break;
             }
         }
-        Employee.saveEmployeeList("employees.ser");
+        Employee.saveEmployeeList("employees.ser"); //saves it
         btnSearchActionPerformed(evt);  // Refreshes the list
     } else {
         JOptionPane.showMessageDialog(this, "Please select an employee to fire.");
@@ -222,38 +222,7 @@ public class frmFireEmployee extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmFireEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmFireEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmFireEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmFireEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmFireEmployee().setVisible(true);
-            }
-        });
-    }
-
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnFireEmp;

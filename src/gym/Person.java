@@ -32,8 +32,6 @@ public abstract class Person implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-
-
     public String getName() {
         return name;
     }

@@ -12,20 +12,12 @@ public class Manager extends Employee {
     
     public static String username;
     public static String password;
-   // private static final long serialVersionUID = 2375460542340160045;
-    
+            
     public Manager() {
         super();
         this.username = "Andrew";
         this.password = "123456";
         this.role = "Manager";
-    }
-
-    public Manager(int employeeId) {
-        super(employeeId);
-        this.username = "Andrew";
-        this.password = "123456";  
-        this.role = "Manger";
     }
 
     public Manager(String employeeId, String name, int age, String gender, String address, String email, String phoneNumber) {
@@ -34,13 +26,7 @@ public class Manager extends Employee {
         this.password = "123456";  
         this.role = "Manger";
     }
-    
-       public Manager(String employeeId, String role, String name, int age, String gender, String address, String email, String phoneNumber,String username,String password) {
-        super(employeeId, role, name, age, gender, address, email, phoneNumber);
-        this.username = username;
-        this.password = password;
-    }
-    
+
     public static int getCount() {
         return count;
     }

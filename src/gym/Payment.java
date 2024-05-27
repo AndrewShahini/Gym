@@ -19,11 +19,11 @@ public class Payment implements Serializable{
     public static void makePayment(double amount, String method, double required) {
         double change = amount - required;
         if (method.equals("Cash")) {
-            cashBalance += amount - change;
+            cashBalance += amount - change; //returns the exact amount
         } else if (method.equals("Credit")) {
-            creditBalance += amount - change;
+            creditBalance += amount - change; //returns the exact amount
         }
-        serializeBalances("payments.ser");
+        serializeBalances("payments.ser"); //saves the new payments
     }
 
     public static double getCashBalance() {
@@ -35,15 +35,19 @@ public class Payment implements Serializable{
     }
     
     public static void serializeBalances(String path) {
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(path))) {
-            out.writeObject(new double[]{cashBalance, creditBalance});
+        try (
+            FileOutputStream fos = new FileOutputStream(path);
+            ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            oos.writeObject(new double[]{cashBalance, creditBalance});
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public static void deserializeBalances() {
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("payments.ser"))) {
+        try (
+            FileInputStream fis = new FileInputStream("payments.ser");
+            ObjectInputStream in = new ObjectInputStream(fis)) {
             double[] balances = (double[]) in.readObject();
             cashBalance = balances[0];
             creditBalance = balances[1];

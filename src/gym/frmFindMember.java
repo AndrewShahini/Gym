@@ -232,7 +232,7 @@ public class frmFindMember extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         dispose();
-        new frmMemberMenu().setVisible(true);
+        new frmMemberMenu().setVisible(true); //goes back
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -241,7 +241,7 @@ public class frmFindMember extends javax.swing.JFrame {
 
     private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
         dispose();
-        new frmMemberMenu().setVisible(true);
+        new frmMemberMenu().setVisible(true); //goes back
     }//GEN-LAST:event_btnBack1ActionPerformed
 
     private void txtMemIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMemIDActionPerformed
@@ -265,7 +265,7 @@ public class frmFindMember extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMemPhoneActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        searchMembers();
+        searchMembers(); //call searchMembers();
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void txtMemEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMemEmailActionPerformed
@@ -281,7 +281,7 @@ public class frmFindMember extends javax.swing.JFrame {
     txtMemEmail.setText("");
     txtMemAddress.setText("");
     
-    // Show the entire list of employees again
+    //show the entire list of employees again
     updateMember(Gym.members);
     }//GEN-LAST:event_btnResetActionPerformed
 
@@ -326,7 +326,7 @@ public class frmFindMember extends javax.swing.JFrame {
      private void updateMember(ArrayList<Member> members) {
         DefaultListModel<String> listModel = new DefaultListModel<>();
         for (Member mem : members) {
-            listModel.addElement(mem.toString());//getName() + " - " + emp.getEmployeeId());
+            listModel.addElement(mem.toString());
         }
         listOfMembers.setModel(listModel);
     }
@@ -336,37 +336,7 @@ public class frmFindMember extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmFindMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmFindMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmFindMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmFindMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmFindMember().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;

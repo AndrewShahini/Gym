@@ -18,8 +18,8 @@ public class frmLogin extends javax.swing.JFrame {
      */
     public frmLogin() {
         initComponents();
-        lblIncorrectUser.setVisible(false);
-        //Manager man = new Manager(1,"Manager");
+        lblIncorrectUser.setVisible(false); //hides the incorrect message
+
     }
 
     /**
@@ -197,10 +197,8 @@ public class frmLogin extends javax.swing.JFrame {
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         int a = JOptionPane.showConfirmDialog(null, "Do you want to exit the application","Select",JOptionPane.YES_NO_OPTION);
         if(a == 0){
-            System.exit(0);
+            System.exit(0); //exits
         }
-        
-        
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
@@ -208,13 +206,12 @@ public class frmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSignUpActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-    //if(txtUsername.getText().equals("Andrew")&& txtPassword.getText().equals("123456")) 
    if(txtUsername.getText().equals(Manager.username)&& txtPassword.getText().equals(Manager.password))
-        {
-            setVisible(false);
-            new frmMainMenu().setVisible(true);
-        }else{
-            lblIncorrectUser.setVisible(true);
+        { //logs in
+         setVisible(false);
+         new frmMainMenu().setVisible(true);
+     }else{
+        lblIncorrectUser.setVisible(true); //shows the incorrect message
         }
         
     }//GEN-LAST:event_btnLoginActionPerformed
@@ -224,7 +221,6 @@ public class frmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void boxShowPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxShowPassActionPerformed
-        // TODO add your handling code here:
         if(boxShowPass.isSelected()){
             txtPassword.setEchoChar((char)0);
         }else{
@@ -233,7 +229,6 @@ public class frmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_boxShowPassActionPerformed
 
     private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusGained
-        // TODO add your handling code here:
         lblIncorrectUser.setVisible(false);
         if(txtUsername.getText().equals("")){
             txtUsername.setText("");
@@ -242,7 +237,6 @@ public class frmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsernameFocusGained
 
     private void txtUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusLost
-        // TODO add your handling code here:
         lblIncorrectUser.setVisible(false);
         if(txtUsername.getText().equals("")){
             txtUsername.setText("");
@@ -251,7 +245,6 @@ public class frmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsernameFocusLost
 
     private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusGained
-        // TODO add your handling code here:
         lblIncorrectUser.setVisible(false);
         if(txtPassword.getText().equals("")){
             txtPassword.setText("");

@@ -219,10 +219,10 @@ public class frmUpgradeMember extends javax.swing.JFrame {
                 if (member.toString().equals(selectedMember)) {
                     int a = JOptionPane.showConfirmDialog(null, "Do you want to pay $85 to upgrade your membership","Confirm",JOptionPane.YES_NO_OPTION);
                     if(a == 0){        
-                    member.upgradeToPremium();
-                    Payment.makePayment(85.0, "Credit",85.0);                 
+                    member.upgradeToPremium(); //sets membership to premium
+                    Payment.makePayment(85.0, "Credit",85.0); //can only pay credit             
                     updateMemberList(members);
-                    Member.serialize("member.ser");
+                    Member.serialize("member.ser"); //saves it
                     JOptionPane.showMessageDialog(this, "Member upgraded to premium!");
                     break;
                     }

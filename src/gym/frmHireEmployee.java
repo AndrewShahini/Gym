@@ -228,45 +228,46 @@ public class frmHireEmployee extends javax.swing.JFrame {
        String ageStr = txtEmpAge.getText();
         
        
-       if (!phoneNumber.matches("\\d{3}-\\d{3}-\\d{4}")) {
+       if (!phoneNumber.matches("\\d{3}-\\d{3}-\\d{4}")) { //regex to validate the format 
           JOptionPane.showMessageDialog(null, "Invalid phone number format. Use xxx-xxx-xxxx.");
           return;
         }
+       
        int age;
         try {
-            age = Integer.parseInt(ageStr);
+            age = Integer.parseInt(ageStr); //convert into an Integer
           } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(null, "Invalid age format. Please enter a valid number.");
-        return;
+        return; //exits when it is not formatted properly
     }
     
     if (age < 18) {
         JOptionPane.showMessageDialog(null, "You must be 18 years or older to work here.");
         return;
-    }
+    } //checks if you're 18+
        
-      if(role.equalsIgnoreCase("trainer")){
+      if(role.equalsIgnoreCase("trainer")){ //creates a trainer object
           Trainer newTrainer = new Trainer(role, name, age, gender, address, email, phoneNumber);
           employees.add(newTrainer);
       }else{
       Employee newEmployee = new Employee(role, name, age, gender, address, email, phoneNumber);
-      employees.add(newEmployee);
+      employees.add(newEmployee); //creates an employee object
       } 
       Employee.saveEmployeeList("employees.ser"); //serializes
 
-     // Clear the fields after hiring
-            txtEmpName.setText("");
-            txtEmpRole.setText("");
-            boxGender.setSelectedIndex(0);
-            txtEmail.setText("");
-            txtEmpPhone.setText("");
-            txtEmpAddress.setText("");
-            txtEmpAge.setText("");
+     //clear the fields after hiring
+      txtEmpName.setText("");
+      txtEmpRole.setText("");
+      boxGender.setSelectedIndex(0);
+      txtEmail.setText("");
+      txtEmpPhone.setText("");
+      txtEmpAddress.setText("");
+      txtEmpAge.setText("");
 
-            JOptionPane.showMessageDialog(this, "Employee hired successfully!");
+      JOptionPane.showMessageDialog(this, "Employee hired successfully!");
         
 
-        pack();
+     pack();
         
         
     }//GEN-LAST:event_btnHireActionPerformed
@@ -290,37 +291,7 @@ public class frmHireEmployee extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmHireEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmHireEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmHireEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmHireEmployee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmHireEmployee().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxGender;

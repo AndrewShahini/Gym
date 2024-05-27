@@ -22,7 +22,7 @@ public class frmSignUp extends javax.swing.JFrame {
     }
 
     public void toggle(){
-       // Toggle visibility of price labels based on membership type
+       //toggle visibility of price labels based on membership type
         if (boxMem.getSelectedItem().equals("Regular")) {
             lblRegularPrice.setVisible(true);
             lblPremiumPrice.setVisible(false);
@@ -318,14 +318,14 @@ public class frmSignUp extends javax.swing.JFrame {
         String paymentMethod = (String) boxPaymentMethod.getSelectedItem().toString();
 
         
-        if (!phone.matches("\\d{3}-\\d{3}-\\d{4}")) {
+        if (!phone.matches("\\d{3}-\\d{3}-\\d{4}")) { //validates the format for the phone number
            JOptionPane.showMessageDialog(null, "Invalid phone number format. Use xxx-xxx-xxxx.");
            return;
         }
         
         int age;
         try {
-            age = Integer.parseInt(ageStr);
+            age = Integer.parseInt(ageStr); //convert into an Integer
           } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(null, "Invalid age format. Please enter a valid number.");
         return;
@@ -334,24 +334,26 @@ public class frmSignUp extends javax.swing.JFrame {
     if (age < 18) {
         JOptionPane.showMessageDialog(null, "You must be 18 years or older to sign up.");
         return;
-    }
-
+    } //checks if you are 18+
         
-        //double amountPaid = Double.parseDouble(amountPaidStr);
-        
-        double amountPaid;
-        try {
-            amountPaid = Double.parseDouble(amountPaidStr);
+    double amountPaid;
+    try {
+        amountPaid = Double.parseDouble(amountPaidStr);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Invalid amount format. Please enter a valid number.");
          return;
         }
         
         double requiredAmount = membershipType.equals("Regular") ? 180.0 : 265.0;
-
+        /*
+        Determine the required amount based on the membership type.
+        If the membership type is "Regular", the required amount is 180.0.
+        If the membership type is any other value (e.g., "Premium"), the required amount is 265.0.
+        */
         if (amountPaid >= requiredAmount) {
             Payment.makePayment(amountPaid, paymentMethod, requiredAmount);
             Member newMember = new Member(name, age, gender, address, email, phone,membershipType,paymentMethod);
+            //creates new member object and adds it (saves it too)
             Member.addMember(newMember);        
             // Payment successful, display message
             JOptionPane.showMessageDialog(null, "Payment successful!");
@@ -359,6 +361,7 @@ public class frmSignUp extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Insufficient amount paid. Required amount: $" + requiredAmount);     
         }
+        //reset everyting
         txtName.setText("");
         txtAge.setText("");
         boxGender.setSelectedIndex(0);

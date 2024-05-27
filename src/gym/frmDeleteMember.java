@@ -22,8 +22,8 @@ public class frmDeleteMember extends javax.swing.JFrame {
      */
     public frmDeleteMember() {
         initComponents();
-        Member.loadMembers();
-        updateMemberList(Gym.members);
+        Member.loadMembers(); //deserializes
+        updateMemberList(Gym.members); //updates the list
     }
 
     /**
@@ -181,9 +181,8 @@ public class frmDeleteMember extends javax.swing.JFrame {
         String empId = txtMemberID.getText().trim();
         String name = txtMemberName.getText().trim();
         
-        ArrayList<Member> filteredList = new ArrayList<>();
+        ArrayList<Member> filteredList = new ArrayList<>(); //new arraylist for members that match the criteria
         for (Member mem : members) {
-           
             boolean matches = true;
         if (!empId.isEmpty() && !mem.getMemberId().contains(empId)) {
             matches = false;
@@ -191,42 +190,46 @@ public class frmDeleteMember extends javax.swing.JFrame {
         if (!name.isEmpty() && !mem.getName().toLowerCase().contains(name.toLowerCase())) {
             matches = false;
         }
-       
         if (matches) {
             filteredList.add(mem);
         }
       }
-        updateMemberList(filteredList);
+        updateMemberList(filteredList); //updates the filtered list
     
     }//GEN-LAST:event_btnFindActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-
-        int selectedIndex = listOfMembers.getSelectedIndex();
+    int selectedIndex = listOfMembers.getSelectedIndex(); // Select a member with the mouse
         if (selectedIndex != -1) {
-            String selectedMem = listOfMembers.getSelectedValue();
-            members.remove(selectedMem);
+        String selectedMem = listOfMembers.getSelectedValue();
+        // find the corresponding member object
+        Member memberToRemove = null;
+        for (Member member : members) {
+            if (member.toString().equals(selectedMem)) {
+                memberToRemove = member;
+                break;
+            }
+        }
+        // remove the member if found
+        if (memberToRemove != null) {
+            members.remove(memberToRemove);
             updateMemberList(members);
-            for (int i = 0; i < members.size(); i++) {
-                 if (members.get(i).toString().equals(selectedMem)) {
-                     members.remove(i);
-                     JOptionPane.showMessageDialog(this, "Member has been deleted");
-                     break;
-                 }
-             }
-        Member.serialize("member.ser");
-        btnResetActionPerformed(evt); //Refreshes the list after it deletes
+            Member.serialize("member.ser");
+            JOptionPane.showMessageDialog(this, "Member has been deleted");
+            btnResetActionPerformed(evt); // refreshes the list after it deletes
+        } else {
+            JOptionPane.showMessageDialog(this, "Member could not be found.");
+        }
     } else {
         JOptionPane.showMessageDialog(this, "Please select a member to delete.");
     }
-        
-        
+ 
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         txtMemberID.setText("");
         txtMemberName.setText("");
-        updateMemberList(members);
+        updateMemberList(members); //reloads the entire list
     }//GEN-LAST:event_btnResetActionPerformed
 
      private void updateMemberList(ArrayList<Member> members) {
@@ -239,37 +242,7 @@ public class frmDeleteMember extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmDeleteMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmDeleteMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmDeleteMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmDeleteMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmDeleteMember().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;

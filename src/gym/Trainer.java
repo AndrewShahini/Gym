@@ -14,21 +14,15 @@ public class Trainer extends Employee{
     
 
     public Trainer() {
+        super();
         this.role = "Trainer";
     }
 
-    public Trainer(String employeeId, String role, String name, int age, String gender, String address, String email, String phoneNumber) {
-        super(employeeId, role, name, age, gender, address, email, phoneNumber);
-    }
-    
     public Trainer(String role, String name, int age, String gender, String address, String email, String phoneNumber) {
         super(role, name, age, gender, address, email, phoneNumber);
         this.employeeId = employeeId;
     }
 
-    public Trainer(String employeeId, String role) {
-        super(employeeId, role);
-    }
 
     public static int getCount() {
         return count;

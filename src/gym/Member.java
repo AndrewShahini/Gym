@@ -27,13 +27,6 @@ public class Member extends Person {
         this.payMethod = "";
     }
 
-    public Member(int memberId, String name, int age, String gender, String address, String email, String phoneNumber,String membership,String payMethod) {
-        super(name, age, gender, address, email, phoneNumber);
-        this.memberId = String.valueOf(count++);
-        this.membership = membership;
-        this.payMethod = payMethod;
-    }
-   
     public Member(String name, int age, String gender, String address, String email, String phoneNumber,String membership,String payMethod) {
         super(name, age, gender, address, email, phoneNumber);
         this.memberId = String.valueOf(count++);
@@ -161,12 +154,8 @@ public class Member extends Person {
         }
         return Objects.equals(this.payMethod, other.payMethod);
     }
-   
-
-
-
-    public static void serialize(String path){
-    
+  
+    public static void serialize(String path){ //serialize method
         try {
            FileOutputStream fos = new FileOutputStream(path);
            ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -175,27 +164,11 @@ public class Member extends Person {
             e.printStackTrace();
         }
     }
-    /*
-    public static ArrayList<Member> Deserialize(String path){
-        
-     ArrayList<Member> object = null;
-         try {
-            FileInputStream fis = new FileInputStream(path);
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            members = (ArrayList<Member>) ois.readObject();
-            ois.close();
-            fis.close();
-            System.out.println(members);
-            return members;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        return object;
-    }
-*/
-     public static ArrayList<Member> loadMembers() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Member.ser"))) {
+
+    public static ArrayList<Member> loadMembers() { //deserializes
+        try (
+            FileInputStream fis = new FileInputStream("member.ser");
+            ObjectInputStream ois = new ObjectInputStream(fis)) {
             return (ArrayList<Member>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             return new ArrayList<>();
@@ -203,8 +176,8 @@ public class Member extends Person {
     }
 
     public static void addMember(Member member) {
-        members.add(member);
-        Member.serialize("memeber.ser");
+        members.add(member); //adds it to the ArrayList<Member>
+        Member.serialize("memeber.ser"); //serializes the new member
     }
       
 }

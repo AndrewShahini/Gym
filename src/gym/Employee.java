@@ -21,33 +21,19 @@ public class Employee extends Person {
     protected static int count = 1;
     protected String employeeId;
     protected String role;
-    private static final long serialVersionUID = 8442110548024887292L; // Replace this with the correct ID
+    private static final long serialVersionUID = 8442110548024887292L; 
     
 
     public Employee() {
     super();
     this.role = "";
-    }
-    
-    public Employee(int employeeId) {
-        this.employeeId = String.valueOf(count++);
-        
-    }
-    
-    public Employee(String employeeId, String role) {
-        this.employeeId = String.valueOf(count++);
-        this.role = role;
+    this.employeeId = "";
     }
 
-    public Employee(String employeeId, String role, String name, int age, String gender, String address, String email, String phoneNumber) {
-        super(name, age, gender, address, email, phoneNumber);
-        this.employeeId = String.valueOf(count++);
-        this.role = role;
-    }
-        public Employee(String role, String name, int age, String gender, String address, String email, String phoneNumber) {
-        super(name, age, gender, address, email, phoneNumber);
-        this.employeeId = String.valueOf(count++);
-        this.role = role;
+    public Employee(String role, String name, int age, String gender, String address, String email, String phoneNumber) {
+      super(name, age, gender, address, email, phoneNumber);
+      this.employeeId = String.valueOf(count++);
+      this.role = role;
     }
 
     public static int getCount() {
@@ -151,27 +137,30 @@ public class Employee extends Person {
     }
 
        public static void addMember(Employee employee) {
-        employees.add(employee);
-        Employee.saveEmployeeList("employees.ser");
+        employees.add(employee); //adds it to the ArrayList<Employees>
+        Employee.saveEmployeeList("employees.ser"); //automatically saves it
     }
     
-    
+    //serialize method
     public static void saveEmployeeList(String path) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path))) {
+        try (
+        FileOutputStream fos = new FileOutputStream(path);
+        ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(employees);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    // Deserialization method
+    //deserialization method
     public static void loadEmployeeList() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("employees.ser"))) {
+        try (
+            FileInputStream fis = new FileInputStream("employees.ser");
+            ObjectInputStream ois = new ObjectInputStream(fis)) {
             employees = (ArrayList<Employee>) ois.readObject();
-            // Update the count to continue from the last employeeId
             if (!employees.isEmpty()) {
                 count = Integer.parseInt(employees.get(employees.size() - 1).employeeId) + 1;            
-            }
+            }             // Update the count to continue from the last employeeId
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
