@@ -4,17 +4,28 @@
  */
 package gym;
 
+import static gym.Gym.employees;
+import static gym.Gym.members;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author shahi
  */
 public class frmDeleteMember extends javax.swing.JFrame {
+    //private JList<Member> memberList;
 
     /**
      * Creates new form frmDeleteMember
      */
     public frmDeleteMember() {
         initComponents();
+     //   memberList = new JList<>(new DefaultListModel<>());
+        Member.loadMembers();
+        updateMemberList(members);
     }
 
     /**
@@ -31,11 +42,12 @@ public class frmDeleteMember extends javax.swing.JFrame {
         lblMemberName = new javax.swing.JLabel();
         txtMemberName = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listOfMembers = new javax.swing.JList<>();
         txtMemberID = new javax.swing.JTextField();
         lblMemberID = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnFind = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,7 +69,7 @@ public class frmDeleteMember extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listOfMembers);
 
         txtMemberID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,10 +79,10 @@ public class frmDeleteMember extends javax.swing.JFrame {
 
         lblMemberID.setText("Member ID");
 
-        jButton1.setText("Find");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnFind.setText("Find");
+        btnFind.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnFindActionPerformed(evt);
             }
         });
 
@@ -81,6 +93,13 @@ public class frmDeleteMember extends javax.swing.JFrame {
             }
         });
 
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,15 +107,19 @@ public class frmDeleteMember extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtMemberName, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMemberID, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lblMemberName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtMemberID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addComponent(btnFind)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addComponent(btnReset))
+                    .addComponent(txtMemberName)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblMemberID, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtMemberID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addComponent(lblMemberName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
             .addGroup(layout.createSequentialGroup()
@@ -113,27 +136,30 @@ public class frmDeleteMember extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(lblMemberID)
-                .addGap(18, 18, 18)
-                .addComponent(txtMemberID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblMemberName)
-                .addGap(18, 18, 18)
-                .addComponent(txtMemberName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(lblDeleteMember)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDelete)
-                    .addComponent(btnBack))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(lblMemberID)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtMemberID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblMemberName)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtMemberName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnFind)
+                            .addComponent(btnReset)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(lblDeleteMember)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnDelete)
+                            .addComponent(btnBack))))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -152,14 +178,75 @@ public class frmDeleteMember extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMemberNameActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
+
+        String empId = txtMemberID.getText().trim();
+        String name = txtMemberName.getText().trim();
+        
+        ArrayList<Member> filteredList = new ArrayList<>();
+        for (Member mem : members) {
+           
+            boolean matches = true;
+        if (!empId.isEmpty() && !mem.getMemberId().contains(empId)) {
+            matches = false;
+        }
+        if (!name.isEmpty() && !mem.getName().toLowerCase().contains(name.toLowerCase())) {
+            matches = false;
+        }
+       
+        if (matches) {
+            filteredList.add(mem);
+        }
+      }
+        updateMemberList(filteredList);
+    
+    }//GEN-LAST:event_btnFindActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+       /*
+        Member selectedMember = memberList.getSelectedValue();
+        if(selectedMember != null){
+            members.remove(selectedMember);
+            updateMemberList(members);
+            Member.Serialize("member.ser");
+        }else{
+            JOptionPane.showMessageDialog(this, "No member selected for deletion.");
+        }
+        */
+        int selectedIndex = listOfMembers.getSelectedIndex();
+        if (selectedIndex != -1) {
+            String selectedMem = listOfMembers.getSelectedValue();
+            members.remove(selectedMem);
+            updateMemberList(members);
+            for (int i = 0; i < members.size(); i++) {
+                 if (members.get(i).toString().equals(selectedMem)) {
+                     members.remove(i);
+                     JOptionPane.showMessageDialog(this, "Member has been deleted");
+                     break;
+                 }
+             }
+        Member.Serialize("member.ser");
+        btnResetActionPerformed(evt); //Refreshes the list after it deletes
+    } else {
+        JOptionPane.showMessageDialog(this, "Please select a member to delete.");
+    }
+        
+        
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        txtMemberID.setText("");
+        txtMemberName.setText("");
+        updateMemberList(members);
+    }//GEN-LAST:event_btnResetActionPerformed
+
+     private void updateMemberList(ArrayList<Member> members) {
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        for (Member mem : members) {
+            listModel.addElement(mem.toString());
+        }
+        listOfMembers.setModel(listModel);
+    }
     /**
      * @param args the command line arguments
      */
@@ -198,12 +285,13 @@ public class frmDeleteMember extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JButton btnFind;
+    private javax.swing.JButton btnReset;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDeleteMember;
     private javax.swing.JLabel lblMemberID;
     private javax.swing.JLabel lblMemberName;
+    private javax.swing.JList<String> listOfMembers;
     private javax.swing.JTextField txtMemberID;
     private javax.swing.JTextField txtMemberName;
     // End of variables declaration//GEN-END:variables

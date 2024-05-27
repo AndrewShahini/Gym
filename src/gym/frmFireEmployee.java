@@ -198,16 +198,17 @@ public class frmFireEmployee extends javax.swing.JFrame {
 
     private void btnFireEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFireEmpActionPerformed
         int selectedIndex = listOfEmployee.getSelectedIndex();
-    if (selectedIndex != -1) {
-        String selectedEmployee = listOfEmployee.getSelectedValue();
+        if (selectedIndex != -1) {
+            String selectedEmployee = listOfEmployee.getSelectedValue();
         for (int i = 0; i < employees.size(); i++) {
             if (employees.get(i).toString().equals(selectedEmployee)) {
                 employees.remove(i);
+                JOptionPane.showMessageDialog(this, "You've been FIREDDD");
                 break;
             }
         }
         Employee.saveEmployeeList();
-        btnSearchActionPerformed(evt);  // Refresh the list
+        btnSearchActionPerformed(evt);  // Refreshes the list
     } else {
         JOptionPane.showMessageDialog(this, "Please select an employee to fire.");
     }
