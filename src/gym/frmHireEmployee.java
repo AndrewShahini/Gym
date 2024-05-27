@@ -225,13 +225,25 @@ public class frmHireEmployee extends javax.swing.JFrame {
        String email = txtEmail.getText();
        String phoneNumber = txtEmpPhone.getText();
        String address = txtEmpAddress.getText();
-       int age = Integer.parseInt(txtEmpAge.getText());
+       String ageStr = txtEmpAge.getText();
         
        
        if (!phoneNumber.matches("\\d{3}-\\d{3}-\\d{4}")) {
           JOptionPane.showMessageDialog(null, "Invalid phone number format. Use xxx-xxx-xxxx.");
           return;
         }
+       int age;
+        try {
+            age = Integer.parseInt(ageStr);
+          } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Invalid age format. Please enter a valid number.");
+        return;
+    }
+    
+    if (age < 18) {
+        JOptionPane.showMessageDialog(null, "You must be 18 years or older to sign up.");
+        return;
+    }
        
       if(role.equalsIgnoreCase("trainer")){
           Trainer newTrainer = new Trainer(role, name, age, gender, address, email, phoneNumber);

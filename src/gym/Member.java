@@ -18,22 +18,27 @@ public class Member extends Person {
     private static int count = 1;
     public String memberId;
     public String membership;
+    public String payMethod;
 
     public Member() {
         super();
         this.memberId = "";
         this.membership = "";
+        this.payMethod = "";
     }
 
-    public Member(int memberId, String name, int age, String gender, String address, String email, String phoneNumber,String membership) {
+    public Member(int memberId, String name, int age, String gender, String address, String email, String phoneNumber,String membership,String payMethod) {
         super(name, age, gender, address, email, phoneNumber);
         this.memberId = String.valueOf(count++);
         this.membership = membership;
+        this.payMethod = payMethod;
     }
-    public Member(String name, int age, String gender, String address, String email, String phoneNumber,String membership) {
+   
+    public Member(String name, int age, String gender, String address, String email, String phoneNumber,String membership,String payMethod) {
         super(name, age, gender, address, email, phoneNumber);
         this.memberId = String.valueOf(count++);
         this.membership = membership;
+        this.payMethod = payMethod;
     }
 
     public static int getCount() {
@@ -110,14 +115,32 @@ public class Member extends Person {
 
     public void upgradeToPremium() {
         this.membership = "Premium";
-        
+    }
+
+    public String getPayMethod() {
+        return payMethod;
+    }
+
+    public void setPayMethod(String payMethod) {
+        this.payMethod = payMethod;
     }
 
     @Override
-    public String toString() {
-        return memberId + ", " + name + ", " + membership+ ", " + gender+ ", " + age + ", " +address+ ", " + email+ ", " + phoneNumber;
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.memberId);
+        hash = 29 * hash + Objects.hashCode(this.membership);
+        hash = 29 * hash + Objects.hashCode(this.payMethod);
+        return hash;
     }
-   
+    
+    
+
+    @Override
+    public String toString() {
+        return memberId + ", " + name + ", " + membership+ ", " + gender+ ", " + age + ", " +address+ ", " + email+ ", " + phoneNumber+ ", " +payMethod;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -130,11 +153,16 @@ public class Member extends Person {
             return false;
         }
         final Member other = (Member) obj;
-        if (this.memberId != other.memberId) {
+        if (!Objects.equals(this.memberId, other.memberId)) {
             return false;
         }
-        return false;
+        if (!Objects.equals(this.membership, other.membership)) {
+            return false;
+        }
+        return Objects.equals(this.payMethod, other.payMethod);
     }
+   
+
 
 
     public static void Serialize(String path){
@@ -174,5 +202,9 @@ public class Member extends Person {
         }
     }
 
+    public static void addMember(Member member) {
+        members.add(member);
+        Member.Serialize("Memeber.ser");
+    }
       
 }

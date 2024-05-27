@@ -25,7 +25,7 @@ public class frmDeleteMember extends javax.swing.JFrame {
         initComponents();
      //   memberList = new JList<>(new DefaultListModel<>());
         Member.loadMembers();
-        updateMemberList(members);
+        updateMemberList(Gym.members);
     }
 
     /**

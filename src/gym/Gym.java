@@ -31,8 +31,8 @@ public class Gym {
        Employee.saveEmployeeList();
        Employee.loadEmployeeList();
        
-       Member mem = new Member("James Shahini", 20, "Male", "931 Ball", "ShaJames@gmail.com", "514-131-3134","Premium");
-       Member mem2 = new Member("William Black", 27, "Male", "672 Avenue", "WilliamBlack@gmail.com", "514-977-8297","Regular");
+       Member mem = new Member("James Shahini", 20, "Male", "931 Ball", "ShaJames@gmail.com", "514-131-3134","Premium","Credit");
+       Member mem2 = new Member("William Black", 27, "Male", "672 Avenue", "WilliamBlack@gmail.com", "514-977-8297","Regular","Credit");
        members.add(mem);
        members.add(mem2);
        Member.Serialize("Member.ser");

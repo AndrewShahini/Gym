@@ -22,8 +22,8 @@ public class frmUpgradeMember extends javax.swing.JFrame {
      */
     public frmUpgradeMember() {
         initComponents();
-        members = Member.loadMembers();
-        updateMemberList(members);
+        Member.loadMembers();
+        updateMemberList(Gym.members);
     }
 
     /**

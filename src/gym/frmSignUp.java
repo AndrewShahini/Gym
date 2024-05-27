@@ -17,7 +17,7 @@ public class frmSignUp extends javax.swing.JFrame {
      */
     public frmSignUp() {
         initComponents();
-        members = loadMembers();
+        //members = Member.loadMembers();
         toggle();
     }
 
@@ -310,12 +310,12 @@ public class frmSignUp extends javax.swing.JFrame {
         String name = txtName.getText();
         String address = txtAddress.getText();
         String phone = txtPhoneNumber.getText();
-        String age = txtAge.getText();
+        String ageStr = txtAge.getText();
         String email = txtEmail.getText();
         String gender = (String) boxGender.getSelectedItem();
         String membershipType = boxMem.getSelectedItem().toString();
         String amountPaidStr = txtAmountPaid.getText();
-        String paymentMethod = boxPaymentMethod.getSelectedItem().toString();
+        String paymentMethod = (String) boxPaymentMethod.getSelectedItem().toString();
 
         
         if (!phone.matches("\\d{3}-\\d{3}-\\d{4}")) {
@@ -323,13 +323,36 @@ public class frmSignUp extends javax.swing.JFrame {
            return;
         }
         
-        double amountPaid = Double.parseDouble(amountPaidStr);
+        int age;
+        try {
+            age = Integer.parseInt(ageStr);
+          } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Invalid age format. Please enter a valid number.");
+        return;
+    }
+    
+    if (age < 18) {
+        JOptionPane.showMessageDialog(null, "You must be 18 years or older to sign up.");
+        return;
+    }
+
+        
+        //double amountPaid = Double.parseDouble(amountPaidStr);
+        
+        double amountPaid;
+        try {
+            amountPaid = Double.parseDouble(amountPaidStr);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid amount format. Please enter a valid number.");
+         return;
+        }
+        
         double requiredAmount = membershipType.equals("Regular") ? 180.0 : 265.0;
 
         if (amountPaid >= requiredAmount) {
             Payment.makePayment(amountPaid, paymentMethod);
-            Member newMember = new Member(name, Integer.parseInt(age), gender, address, email, phone,membershipType);
-            addMember(newMember);        
+            Member newMember = new Member(name, age, gender, address, email, phone,membershipType,paymentMethod);
+            Member.addMember(newMember);        
             // Payment successful, display message
             JOptionPane.showMessageDialog(null, "Payment successful!");
             JOptionPane.showMessageDialog(this, "Member was signed up successfully!");
@@ -346,18 +369,7 @@ public class frmSignUp extends javax.swing.JFrame {
 
         pack();
         
-       /* 
-        if(boxMem.getSelectedItem().toString().equals("Premium")){
-            dispose();
-            new frmPremMainMenu().setVisible(true);
-        }
-        if(boxMem.getSelectedItem().toString().equals("Regular")){
-            dispose();
-            new frmRegMainMenu().setVisible(true);
-       }*/
-        
-        
-        
+      
     }//GEN-LAST:event_btnPayActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -370,11 +382,8 @@ public class frmSignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_boxPaymentMethodActionPerformed
    
  
-    public void addMember(Member member) {
-        members.add(member);
-        Serialize("Memeber.ser");
-    }
-    
+ 
+    /*
       public void Serialize(String path){
     
         try {
@@ -392,7 +401,7 @@ public class frmSignUp extends javax.swing.JFrame {
             return new ArrayList<>();
         }
     }
-    
+   */ 
     /**
      * @param args the command line arguments
      */
