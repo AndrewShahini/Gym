@@ -169,15 +169,17 @@ public class Member extends Person {
         try (
             FileInputStream fis = new FileInputStream("member.ser");
             ObjectInputStream ois = new ObjectInputStream(fis)) {
-            return (ArrayList<Member>) ois.readObject();
+            members = (ArrayList<Member>) ois.readObject();
+            return members;
         } catch (IOException | ClassNotFoundException e) {
+            System.out.println(e.getMessage());
             return new ArrayList<>();
         }
     }
 
     public static void addMember(Member member) {
         members.add(member); //adds it to the ArrayList<Member>
-        Member.serialize("memeber.ser"); //serializes the new member
+        Member.serialize("member.ser"); //serializes the new member
     }
       
 }

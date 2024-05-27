@@ -153,7 +153,7 @@ public class Employee extends Person {
     }
 
     //deserialization method
-    public static void loadEmployeeList() {
+    public static ArrayList<Employee> loadEmployeeList() {
         try (
             FileInputStream fis = new FileInputStream("employees.ser");
             ObjectInputStream ois = new ObjectInputStream(fis)) {
@@ -164,6 +164,7 @@ public class Employee extends Person {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+        return employees;
     }
     @Override
     public String toString() {
