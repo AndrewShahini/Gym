@@ -136,7 +136,7 @@ public class Employee extends Person {
         return Objects.equals(this.role, other.role);
     }
 
-       public static void addMember(Employee employee) {
+       public static void addEmployee(Employee employee) {
         employees.add(employee); //adds it to the ArrayList<Employees>
         Employee.saveEmployeeList("employees.ser"); //automatically saves it
     }

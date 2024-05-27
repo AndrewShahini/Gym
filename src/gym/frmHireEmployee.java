@@ -251,10 +251,9 @@ public class frmHireEmployee extends javax.swing.JFrame {
           employees.add(newTrainer);
       }else{
       Employee newEmployee = new Employee(role, name, age, gender, address, email, phoneNumber);
+      Employee.addEmployee(newEmployee);
       employees.add(newEmployee); //creates an employee object
-      } 
-      Employee.saveEmployeeList("employees.ser"); //serializes
-
+    }
      //clear the fields after hiring
       txtEmpName.setText("");
       txtEmpRole.setText("");
@@ -265,7 +264,7 @@ public class frmHireEmployee extends javax.swing.JFrame {
       txtEmpAge.setText("");
 
       JOptionPane.showMessageDialog(this, "Employee hired successfully!");
-        
+  
 
      pack();
         
