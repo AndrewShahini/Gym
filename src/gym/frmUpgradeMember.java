@@ -22,7 +22,7 @@ public class frmUpgradeMember extends javax.swing.JFrame {
      */
     public frmUpgradeMember() {
         initComponents();
-        members = loadMembers();
+        members = Member.loadMembers();
         updateMemberList(members);
     }
 
@@ -49,11 +49,12 @@ public class frmUpgradeMember extends javax.swing.JFrame {
         btnUpgrade = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listMembers = new javax.swing.JList<>();
-        btnRefresh = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
         lblMemID = new javax.swing.JLabel();
         txtMemID = new javax.swing.JTextField();
         lblMemName = new javax.swing.JLabel();
         txtMemName = new javax.swing.JTextField();
+        btnReset = new javax.swing.JButton();
 
         list1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,10 +116,10 @@ public class frmUpgradeMember extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(listMembers);
 
-        btnRefresh.setText("Refresh");
-        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefreshActionPerformed(evt);
+                btnSearchActionPerformed(evt);
             }
         });
 
@@ -138,6 +139,8 @@ public class frmUpgradeMember extends javax.swing.JFrame {
             }
         });
 
+        btnReset.setText("Reset");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -154,16 +157,18 @@ public class frmUpgradeMember extends javax.swing.JFrame {
                             .addComponent(lblMemID, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtMemID, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblMemName, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtMemName, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(btnRefresh))
+                            .addComponent(txtMemName, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnSearch)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnReset))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(91, 91, 91)
                         .addComponent(btnBack)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36))
                     .addGroup(layout.createSequentialGroup()
@@ -187,8 +192,10 @@ public class frmUpgradeMember extends javax.swing.JFrame {
                         .addComponent(lblMemName)
                         .addGap(18, 18, 18)
                         .addComponent(txtMemName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRefresh)))
+                        .addGap(46, 46, 46)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSearch)
+                            .addComponent(btnReset))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpgrade)
@@ -209,10 +216,11 @@ public class frmUpgradeMember extends javax.swing.JFrame {
      String selectedMember = listMembers.getSelectedValue();
         if (selectedMember != null) {
             for (Member member : members) {
-                if (member.getName().equals(selectedMember)) {
+                if (member.toString().equals(selectedMember)) {
                     member.upgradeToPremium();
-                    saveMembers();
+                    Payment.makePayment(85.0, "Credit");                 
                     updateMemberList(members);
+                    Member.Serialize("member.ser");
                     JOptionPane.showMessageDialog(this, "Member upgraded to premium!");
                     break;
                 }
@@ -243,7 +251,7 @@ public class frmUpgradeMember extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_list1ActionPerformed
 
-    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         String id = txtID.getText().trim();
         String name = txtName.getText().trim();
 
@@ -252,23 +260,23 @@ public class frmUpgradeMember extends javax.swing.JFrame {
         for (Member member : members) {
             boolean matches = true;
 
-        if (member.membership.equalsIgnoreCase("regular")) {
-            matches = true;
-        }
-        if (!id.isEmpty() && !member.getMemberId().contains(id)) {
-            matches = false;
-        }
-        if (!name.isEmpty() && !member.getName().contains(name)) {
-            matches = false;
-        }
-        if (matches) {
-            filteredMembers.add(member);
+            if (member.membership.equalsIgnoreCase("regular")) {
+                matches = true;
+            }
+            if (!id.isEmpty() && !member.getMemberId().contains(id)) {
+                matches = false;
+            }
+            if (!name.isEmpty() && !member.getName().contains(name)) {
+                matches = false;
+            }
+            if (matches) {
+                filteredMembers.add(member);
         }
     }
 
     updateMemberList(filteredMembers);
 
-    }//GEN-LAST:event_btnRefreshActionPerformed
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     private void txtMemIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMemIDActionPerformed
         // TODO add your handling code here:
@@ -278,27 +286,12 @@ public class frmUpgradeMember extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMemNameActionPerformed
 
-    private ArrayList<Member> loadMembers() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("members.ser"))) {
-            return (ArrayList<Member>) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            return new ArrayList<>();
-        }
-    }
     
-    public void saveMembers() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("members.ser"))) {
-            oos.writeObject(members);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-        private void updateMemberList(ArrayList<Member> members) {
+    private void updateMemberList(ArrayList<Member> members) {
         DefaultListModel<String> listModel = new DefaultListModel<>();
         for (Member member : members) {
             if (member.membership.equalsIgnoreCase("Regular")) {
-                listModel.addElement(member.getName());
+                listModel.addElement(member.toString());
             }
         }
         listMembers.setModel(listModel);
@@ -307,7 +300,8 @@ public class frmUpgradeMember extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnRefresh;
+    private javax.swing.JButton btnReset;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpgrade;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
