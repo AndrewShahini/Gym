@@ -170,6 +170,9 @@ public class Member extends Person {
             FileInputStream fis = new FileInputStream("member.ser");
             ObjectInputStream ois = new ObjectInputStream(fis)) {
             members = (ArrayList<Member>) ois.readObject();
+            if (!members.isEmpty()) {
+                count = Integer.parseInt(members.get(members.size() - 1).memberId) + 1;            
+            }      
             return members;
         } catch (IOException | ClassNotFoundException e) {
             System.out.println(e.getMessage());
