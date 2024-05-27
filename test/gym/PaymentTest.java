@@ -19,10 +19,11 @@ public class PaymentTest {
     @Test
     public void testMakePayment() {
         System.out.println("makePayment");
-        double amount = 0.0;
-        String method = "";
-        double required = 0.0;
+        double amount = 100;
+        String method = "Cash";
+        double required = 120;
         Payment.makePayment(amount, method, required);
+        assertEquals(required, amount, amount);
         fail("The test case is a prototype.");
     }
 
