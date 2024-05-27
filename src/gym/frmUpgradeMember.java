@@ -140,6 +140,11 @@ public class frmUpgradeMember extends javax.swing.JFrame {
         });
 
         btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,7 +170,6 @@ public class frmUpgradeMember extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(91, 91, 91)
                         .addComponent(btnBack)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
@@ -255,17 +259,14 @@ public class frmUpgradeMember extends javax.swing.JFrame {
     }//GEN-LAST:event_list1ActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        String id = txtID.getText().trim();
-        String name = txtName.getText().trim();
+        String id = txtMemID.getText().trim();
+        String name = txtMemName.getText().trim();
 
         ArrayList<Member> filteredMembers = new ArrayList<>();
 
         for (Member member : members) {
             boolean matches = true;
 
-            if (member.membership.equalsIgnoreCase("regular")) {
-                matches = true;
-            }
             if (!id.isEmpty() && !member.getMemberId().contains(id)) {
                 matches = false;
             }
@@ -288,6 +289,13 @@ public class frmUpgradeMember extends javax.swing.JFrame {
     private void txtMemNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMemNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMemNameActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        txtMemID.setText("");
+        txtMemName.setText("");
+        
+        updateMemberList(members);
+    }//GEN-LAST:event_btnResetActionPerformed
 
     
     private void updateMemberList(ArrayList<Member> members) {
