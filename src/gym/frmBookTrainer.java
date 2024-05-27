@@ -245,24 +245,6 @@ public class frmBookTrainer extends javax.swing.JFrame {
 
     private void btnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookActionPerformed
   
-        /*String memberName = listOfPremMem.getSelectedValue().toString();
-        String trainerName = listOfTrainers.getSelectedValue().toString();
-        
-        // Call addBooking method of frmViewBooking to add the booking
-        frmViewBooking.addBooking(memberName, trainerName);
-        
-        // Optionally, display the frmViewBooking frame
-    
-    if (selectedMember == null || selectedTrainer == null) {
-            JOptionPane.showMessageDialog(this, "Please select a premium member and a trainer.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // Book trainer for selected member (logic to create a booking record)
-        viewBookingFrame.addBooking(selectedMember.getName(), selectedTrainer.getName());
-        // Example: Display a message
-        JOptionPane.showMessageDialog(this, "Trainer booked for member.", "Success", JOptionPane.INFORMATION_MESSAGE);
-      */ 
      if (selectedMember == null || selectedTrainer == null) {
         JOptionPane.showMessageDialog(this, "Please select a premium member and a trainer.", "Error", JOptionPane.ERROR_MESSAGE);
         return;
@@ -292,23 +274,7 @@ public class frmBookTrainer extends javax.swing.JFrame {
         if (memberListModel.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Premium member not found.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-       /* 
-        DefaultListModel<String> list = new DefaultListModel<>();
-        
-        for(Member member : members)  
-            {
-            if(member.membership.equalsIgnoreCase("premium") &&(member.getMemberId().equals(memberId) || member.getName().equalsIgnoreCase(memberName)))
-                list.addElement(member.toString());
-                }     
-        
-       if (list.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Member not found.", "Error", JOptionPane.ERROR_MESSAGE);
-            btnBook.setEnabled(false);
-        } else {
-            listOfPremMem.setModel(list);
-            btnBook.setEnabled(true);
-        } 
-        */
+      
     }//GEN-LAST:event_btnFindMemActionPerformed
 
     private void btnFindEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindEmpActionPerformed

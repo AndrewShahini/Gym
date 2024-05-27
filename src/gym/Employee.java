@@ -150,8 +150,14 @@ public class Employee extends Person {
         return Objects.equals(this.role, other.role);
     }
 
-       public static void saveEmployeeList() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("employees.ser"))) {
+       public static void addMember(Employee employee) {
+        employees.add(employee);
+        Employee.saveEmployeeList("employees.ser");
+    }
+    
+    
+    public static void saveEmployeeList(String path) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path))) {
             oos.writeObject(employees);
         } catch (IOException e) {
             e.printStackTrace();

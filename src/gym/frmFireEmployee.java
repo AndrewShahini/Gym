@@ -207,7 +207,7 @@ public class frmFireEmployee extends javax.swing.JFrame {
                 break;
             }
         }
-        Employee.saveEmployeeList();
+        Employee.saveEmployeeList("employees.ser");
         btnSearchActionPerformed(evt);  // Refreshes the list
     } else {
         JOptionPane.showMessageDialog(this, "Please select an employee to fire.");

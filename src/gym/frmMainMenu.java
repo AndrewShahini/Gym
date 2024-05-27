@@ -146,9 +146,11 @@ public class frmMainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPaymentsActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        // TODO add your handling code here:
         int a = JOptionPane.showConfirmDialog(null, "Do you want to exit the application","Select",JOptionPane.YES_NO_OPTION);
         if(a == 0){
+            Member.serialize("member.ser");
+            Employee.saveEmployeeList("employees.ser");
+            Payment.serializeBalances("payments.ser");
             System.exit(0);
         }
     }//GEN-LAST:event_btnExitActionPerformed

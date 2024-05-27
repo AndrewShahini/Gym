@@ -241,7 +241,7 @@ public class frmHireEmployee extends javax.swing.JFrame {
     }
     
     if (age < 18) {
-        JOptionPane.showMessageDialog(null, "You must be 18 years or older to sign up.");
+        JOptionPane.showMessageDialog(null, "You must be 18 years or older to work here.");
         return;
     }
        
@@ -252,7 +252,7 @@ public class frmHireEmployee extends javax.swing.JFrame {
       Employee newEmployee = new Employee(role, name, age, gender, address, email, phoneNumber);
       employees.add(newEmployee);
       } 
-      Employee.saveEmployeeList(); //serializes
+      Employee.saveEmployeeList("employees.ser"); //serializes
 
      // Clear the fields after hiring
             txtEmpName.setText("");

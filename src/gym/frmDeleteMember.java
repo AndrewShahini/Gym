@@ -16,14 +16,12 @@ import javax.swing.JOptionPane;
  * @author shahi
  */
 public class frmDeleteMember extends javax.swing.JFrame {
-    //private JList<Member> memberList;
 
     /**
      * Creates new form frmDeleteMember
      */
     public frmDeleteMember() {
         initComponents();
-     //   memberList = new JList<>(new DefaultListModel<>());
         Member.loadMembers();
         updateMemberList(Gym.members);
     }
@@ -203,16 +201,7 @@ public class frmDeleteMember extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFindActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-       /*
-        Member selectedMember = memberList.getSelectedValue();
-        if(selectedMember != null){
-            members.remove(selectedMember);
-            updateMemberList(members);
-            Member.Serialize("member.ser");
-        }else{
-            JOptionPane.showMessageDialog(this, "No member selected for deletion.");
-        }
-        */
+
         int selectedIndex = listOfMembers.getSelectedIndex();
         if (selectedIndex != -1) {
             String selectedMem = listOfMembers.getSelectedValue();
@@ -225,7 +214,7 @@ public class frmDeleteMember extends javax.swing.JFrame {
                      break;
                  }
              }
-        Member.Serialize("member.ser");
+        Member.serialize("member.ser");
         btnResetActionPerformed(evt); //Refreshes the list after it deletes
     } else {
         JOptionPane.showMessageDialog(this, "Please select a member to delete.");

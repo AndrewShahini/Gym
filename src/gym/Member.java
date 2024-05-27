@@ -165,7 +165,7 @@ public class Member extends Person {
 
 
 
-    public static void Serialize(String path){
+    public static void serialize(String path){
     
         try {
            FileOutputStream fos = new FileOutputStream(path);
@@ -204,7 +204,7 @@ public class Member extends Person {
 
     public static void addMember(Member member) {
         members.add(member);
-        Member.Serialize("Memeber.ser");
+        Member.serialize("memeber.ser");
     }
       
 }

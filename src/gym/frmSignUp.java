@@ -350,7 +350,7 @@ public class frmSignUp extends javax.swing.JFrame {
         double requiredAmount = membershipType.equals("Regular") ? 180.0 : 265.0;
 
         if (amountPaid >= requiredAmount) {
-            Payment.makePayment(amountPaid, paymentMethod);
+            Payment.makePayment(amountPaid, paymentMethod, requiredAmount);
             Member newMember = new Member(name, age, gender, address, email, phone,membershipType,paymentMethod);
             Member.addMember(newMember);        
             // Payment successful, display message
@@ -381,27 +381,8 @@ public class frmSignUp extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_boxPaymentMethodActionPerformed
    
- 
- 
-    /*
-      public void Serialize(String path){
+
     
-        try {
-           FileOutputStream fos = new FileOutputStream(path);
-           ObjectOutputStream oos = new ObjectOutputStream(fos);
-           oos.writeObject(members);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-      public ArrayList<Member> loadMembers() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("Member.ser"))) {
-            return (ArrayList<Member>) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            return new ArrayList<>();
-        }
-    }
-   */ 
     /**
      * @param args the command line arguments
      */
