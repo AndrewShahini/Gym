@@ -4,6 +4,7 @@
  */
 package gym;
 
+import java.io.*;
 import javax.swing.*;
 
 /**
@@ -21,6 +22,7 @@ public class frmViewBooking extends javax.swing.JFrame {
         initComponents();
         bookingListModel = new DefaultListModel<>(); //initialize it
         listBookings.setModel(bookingListModel);
+        loadBookings();
     }
 
     /**
@@ -91,7 +93,40 @@ public class frmViewBooking extends javax.swing.JFrame {
 
     public static void addBooking(String memberName, String trainerName) {
         bookingListModel.addElement(memberName + " is booked with " + trainerName);   
+        saveBookings("bookings.ser");
     }
+    
+    private static void saveBookings(String path) {
+        try (FileOutputStream fos = new FileOutputStream(path);
+            ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            for (int i = 0; i < bookingListModel.getSize(); i++) {
+                oos.writeObject(bookingListModel.getElementAt(i));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadBookings() {
+        try (FileInputStream fis = new FileInputStream("bookings.ser");
+            ObjectInputStream ois = new ObjectInputStream(fis)) {
+            while (true) {
+                try {
+                    String booking = (String) ois.readObject();
+                    bookingListModel.addElement(booking);
+                } catch (EOFException e) {
+                    System.out.println(e.getMessage());
+                    break; // End of file reached
+                }
+            }
+        } catch(FileNotFoundException fns){
+            fns.getStackTrace();
+        }catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error loading bookings.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

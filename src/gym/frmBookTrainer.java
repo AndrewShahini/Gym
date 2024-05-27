@@ -64,6 +64,7 @@ public class frmBookTrainer extends javax.swing.JFrame {
         txtEmpID = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         listOfTrainers = new javax.swing.JList<>();
+        btnViewBooking = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,6 +145,13 @@ public class frmBookTrainer extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(listOfTrainers);
 
+        btnViewBooking.setText("View Booking");
+        btnViewBooking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewBookingActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -179,9 +187,11 @@ public class frmBookTrainer extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
+                        .addGap(58, 58, 58)
                         .addComponent(btnBack)
-                        .addGap(231, 231, 231)
+                        .addGap(66, 66, 66)
+                        .addComponent(btnViewBooking)
+                        .addGap(80, 80, 80)
                         .addComponent(btnBook)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -222,14 +232,12 @@ public class frmBookTrainer extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addGap(52, 52, 52))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnBook)
-                        .addGap(42, 42, 42))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBook)
+                    .addComponent(btnBack)
+                    .addComponent(btnViewBooking))
+                .addGap(42, 42, 42))
         );
 
         pack();
@@ -342,6 +350,11 @@ public class frmBookTrainer extends javax.swing.JFrame {
     }
 
     }//GEN-LAST:event_listOfTrainersValueChanged
+
+    private void btnViewBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewBookingActionPerformed
+        dispose();
+        new frmViewBooking().setVisible(true);
+    }//GEN-LAST:event_btnViewBookingActionPerformed
                 
     private void populateMemberList() {
         memberListModel.clear();
@@ -371,6 +384,7 @@ public class frmBookTrainer extends javax.swing.JFrame {
     private javax.swing.JButton btnBook;
     private javax.swing.JButton btnFindEmp;
     private javax.swing.JButton btnFindMem;
+    private javax.swing.JButton btnViewBooking;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
