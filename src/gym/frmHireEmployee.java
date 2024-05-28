@@ -248,11 +248,10 @@ public class frmHireEmployee extends javax.swing.JFrame {
        
       if(role.equalsIgnoreCase("trainer")){ //creates a trainer object
           Trainer newTrainer = new Trainer(role, name, age, gender, address, email, phoneNumber);
-          employees.add(newTrainer);
+          Employee.addEmployee(newTrainer);
       }else{
       Employee newEmployee = new Employee(role, name, age, gender, address, email, phoneNumber);
-      Employee.addEmployee(newEmployee);
-      employees.add(newEmployee); //creates an employee object
+      Employee.addEmployee(newEmployee); //creates an employee object
     }
      //clear the fields after hiring
       txtEmpName.setText("");
